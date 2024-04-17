@@ -2,16 +2,19 @@
 
 #include "Character.h"
 
-class Monster : public Character {
-public:
-	virtual void attack();
-};
-
 enum class Basic_Monster {
 	Globin,
 	Spyder,
 	Khoi
 };
+
+
+
+class Monster : public Character {
+public:
+	virtual void attack();
+};
+
 
 class Undead : public Monster {
 private:
