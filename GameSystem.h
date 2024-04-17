@@ -6,6 +6,12 @@
 
 #include "Shop.h"
 
+#include "Player.h"
+
+#include "Monster.h"
+
+
+
 class GameSystem {
 private:
 	Player* player;
