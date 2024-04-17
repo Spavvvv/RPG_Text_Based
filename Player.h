@@ -2,7 +2,7 @@
 
 #include "Character.h"
 
-class Player : public Monster {
+class Player : public Character {
 private:
 	bool isChoosenOne;
 	bool isJew;
