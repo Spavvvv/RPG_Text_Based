@@ -1,22 +1,17 @@
 #pragma once
-
+#include<iostream>
 #include <string>
 
 class Item {
-private:
+protected:
 	//Basic Stats of the Items
 	std::string name;
+	std::string type;
 	int level;
-
+	int money;
+	int health;
 	int attack;
 	int defend;
-	int reliability;
-
-	//Other sepcial attribute of the Items
-	bool is_Consumable;
-	bool is_Holy;
-	bool is_Bleeding;
-	int number;
 
 	//Id for spawn easily
 	int id;
@@ -26,14 +21,23 @@ public:
 	Item();
 
 	//Setter
-
+	std::string getName() const;
+	std::string getType() const;
+	int getLevel() const;
+	int getMoney() const;
+	int getHealth() const;
+	int getAttack() const;
+	int getDefend() const;
 	//Getter
+	void setName();
+	void setType();
+	void setLevel();
+	void setMoney();
+	void setHealth();
+	void setAttack();
+	void setDefend();
 
 	//Other methods
-	bool Use();
-
-	bool Equip();
-
-	bool Unequip();
+	void deleteItem();
 };
 
