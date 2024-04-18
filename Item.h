@@ -22,7 +22,7 @@ public:
 	Item(std::string, std::string, int, int, int, int, int, int,);
 	~Item();
 
-	//Setter
+	//Getters
 	std::string getName() const;
 	std::string getType() const;
 	int getLevel() const;
@@ -30,14 +30,17 @@ public:
 	int getHealth() const;
 	int getAttack() const;
 	int getDefend() const;
-	//Getter
-	void setName();
-	void setType();
-	void setLevel();
-	void setMoney();
-	void setHealth();
-	void setAttack();
-	void setDefend();
+	int getID() const;
+
+	//Setters
+	void setName(std::string);
+	void setType(std::string);
+	void setLevel(int);
+	void setMoney(int);
+	void setHealth(int);
+	void setAttack(int);
+	void setDefend(int);
+	void setID(int);
 
 	//Other methods
 	void deleteItem();
