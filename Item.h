@@ -18,7 +18,7 @@ protected:
 
 public:
 	//Init
-	Item();
+	Item(int newID);
 
 	//Setter
 	std::string getName() const;
