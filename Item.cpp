@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 
+	//Init
 	Item::Item(int newID){
 		this->name = "";
 		this->type = "";
@@ -22,6 +23,9 @@
 		this->defend = newDefend;
 		this->ID = newID;
 	}
+	Item::~Item() {}
+
+	//Getters
 	std::string Item::getName() const {
 		return name;
 	}
@@ -46,15 +50,8 @@
 	int Item::getID() const {
 		return ID;
 	}
-	//Getter
-		this->name = newName;
-		this->type = newType;
-		this->level = newLevel;
-		this->money = newMoney;
-		this->health = newHealth;
-		this->attack = newAttack;
-		this->defend = newDefend;
-		this->ID = newID;
+
+	//Setters
 	void Item::setName(std::string newName) {
 		this->name = newName;
 	}
