@@ -2,6 +2,9 @@
 #include<iostream>
 #include<string>
 
+	Item::Item(){
+		
+	}
 	std::string getName() const;
 	std::string getType() const;
 	int getLevel() const;
