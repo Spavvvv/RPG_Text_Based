@@ -1,6 +1,9 @@
 #pragma once
 #include<iostream>
+
 #include<string>
+
+#include "Item.h"
 
 class Equipment: public Item{
 private:
