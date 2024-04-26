@@ -19,7 +19,7 @@ protected:
 public:
 	//Init
 	Item(int newID);
-	Item(std::string, std::string, int, int, int, int, int, int,);
+	Item(std::string, std::string, int, int, int, int, int, int);
 	~Item();
 
 	//Getters
