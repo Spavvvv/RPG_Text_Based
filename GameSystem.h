@@ -19,6 +19,10 @@ private:
 	std::vector<Monster*> monster;
 
 public:
+	void mainMenu();
+
+	void newGame();
+
 	void play();
 
 	void fighting_Process();
