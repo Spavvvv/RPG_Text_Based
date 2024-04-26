@@ -36,6 +36,15 @@
     <ClInclude Include="Monster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.cpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Consumable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameSystem.cpp">
@@ -53,10 +62,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
+    <ClCompile Include="Equipment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

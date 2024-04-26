@@ -5,14 +5,14 @@
 
 #include "Item.h"
 
-class Equipment: public Item{
+class Equipment: public Item {
 private:
   int durability;
   bool isWearing;
-  void breakItem();
+  void deleteItem();
 public:
   //Init
-Equipment();
+	Equipment() : Item(newID) {}
 
   //Getters
 int getDurability() const;
@@ -25,4 +25,5 @@ void setIsWearing(bool);
   //Other functions
 void equip();
 void unequip();
+void breakItem();
 };

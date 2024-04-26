@@ -11,7 +11,7 @@
 		this->health = 0;
 		this->attack = 0;
 		this->defend = 0;
-		this->ID = newID;
+		this->id = newID;
 	}
 	Item::Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newID){
 		this->name = newName;
@@ -21,7 +21,7 @@
 		this->health = newHealth;
 		this->attack = newAttack;
 		this->defend = newDefend;
-		this->ID = newID;
+		this->id = newID;
 	}
 	Item::~Item() {}
 
@@ -48,7 +48,7 @@
 		return defend;
 	}
 	int Item::getID() const {
-		return ID;
+		return id;
 	}
 
 	//Setters
@@ -74,7 +74,7 @@
 		this->defend = newDefend;
 	}
 	void Item::setID(int newID) {
-		this->ID = newID;
+		this->id = newID;
 	}
 
 	//Other methods
