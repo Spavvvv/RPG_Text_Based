@@ -9,10 +9,10 @@
 //-------------------------------------Character Class--------------------------------------
 
 class Character {  
-private:
+protected:
 	std::string name;
 	int health;
-	int attack;
+	int Attack;
 	int defend;
 	int level;
 	int experience;
@@ -22,8 +22,25 @@ public:
 	Character();
 
 	//setter
+	void setName(std::string name_);
+	void setHealth(int health_);
+	void setAttack(int Attack_);
+	void setDefend(int defend_);
+	void setLevel(int level_);
+	void setExperience(int experience_);
+	void setCritical(int critical_);
 
 	//getter
+	std::string getName() const;
+	int getHealth() const;
+	int getAttack() const;
+	int getDefend() const;
+	int getLevel() const;
+	int getExperience() const;
+	int getCritical() const;
+
+	//other methods
+	virtual void attack();
 };
 
 //-------------------------------------Monster Class--------------------------------------

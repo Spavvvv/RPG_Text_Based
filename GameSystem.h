@@ -29,11 +29,17 @@ public:
 
 	void level_Up();
 
-	void saveGame();
+	bool saveGame();
 
 	void loadGame();
 
-	void Encounter();
+	void encounter();
+
+	void exit();
+
+	void author();
+
+	bool readText(std::string filePath);
 
 	//For admins
 	void admin_panel();

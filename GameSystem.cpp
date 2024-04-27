@@ -2,10 +2,9 @@
 
 #include <iostream>
 
-//enum class menuOption {
-//	New_Game,
-//
-//};
+#include <string>
+
+#include <fstream>
 
 void GameSystem::mainMenu() {
 	std::cout << "1. New Game" << '\n';
@@ -13,20 +12,49 @@ void GameSystem::mainMenu() {
 	std::cout << "3. About" << '\n';
 	std::cout << "4. Exit" << '\n';
 
-	int choice;
-	std::cout << "Your choice: ";
-	std::cin >> choice;
+	std::string input;
 
-	switch (choice)
-	{
-	case 1:
-		newGame();
-		break;
-	case 2:
-		loadGame();
-		break;
-	default:
-		break;
+	std::cout << "Your option: ";
+
+	std::cin >> input;
+
+	//validate the input 
+	if (input.length() == 1 && stoi(input) > 0 && stoi(input) < 5) {
+		if (input == "1") {
+			newGame();
+		}
+		else if (input == "2") {
+			loadGame();
+		}
+		else if (input == "3") {
+			author();
+		}
+		else if (input == "4") {
+			exit();
+		}
+		else {
+			std::cout << "Invalid option !" << '\n';
+			mainMenu();
+		}
+	}
+
+
+}
+
+bool GameSystem::readText(std::string filePath) {
+	std::ifstream file(filePath);
+	if (file.is_open()) {
+		std::string line;
+		while (getline(file, line)) {
+			std::cout << line << '\n';
+		}
+		std::cout << "\x1B[2J\x1B[H";
+		file.close();
+		return true;
+	}
+	else {
+		std::cout << "Error !!!" << '\n';
+		return false;
 	}
 
 }
@@ -35,7 +63,42 @@ void GameSystem::newGame() {
 	std::cout << "Hello Stranger !" << '\n';
 	std::cout << "\x1B[2J\x1B[H";
 	std::cout << "What should we call you ?" << '\n';
+	std::cout << "Your name (without space): ";
+
+	std::string name;
+	std::cin >> name;
+	player->setName(name);
+
+	std::cout << "Let's start your journey," << player->getName() << '\n';
+	readText("\\text\\introduce.txt");
+	play();
+}
+
+bool GameSystem::saveGame() {
+	std::string fileSaveLocation = "save\\save" + std::to_string(player->getSaveTimes()) + ".txt";
+	std::ofstream fileSave(fileSaveLocation);
+
+	if (!fileSave.is_open()) {
+		std::cout << "Error !!!" << '\n';
+	}
+	else {
+		//save some basic informations
+		fileSave << player->getName() << '\n';
+		fileSave << player->getHealth() << '\n';
+		fileSave << player->getAttack() << '\n';
+		fileSave << player->getDefend() << '\n';
+		fileSave << player->getLevel() << '\n';
+		fileSave << player->getExperience() << '\n';
+		fileSave << player->getCritical() << '\n';
+		fileSave << player->getSaveTimes() << '\n';
+
+		//special information
+	}
+	
+	
 }
 
 void GameSystem::play() {
+	
 }
+

@@ -5,7 +5,7 @@
 
 #include "Item.h"
 
-class Consumable: public Item {
+class Consumable : public Item {
 private:
     int quantity;
     int duration;
@@ -21,3 +21,4 @@ public:
     //Others
     use();
 
+}

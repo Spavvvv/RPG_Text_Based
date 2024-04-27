@@ -12,7 +12,7 @@ enum class Basic_Monster {
 
 class Monster : public Character {
 public:
-	virtual void attack();
+	void attack();
 };
 
 
