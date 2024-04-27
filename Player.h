@@ -33,9 +33,9 @@ public:
 
 
 	//Other methods
-	void attack();
+	int attack();
 
-	void run();
+	bool run(int monsterLevel);
 
 	void adminPanel();
 

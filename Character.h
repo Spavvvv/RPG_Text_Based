@@ -40,7 +40,7 @@ public:
 	int getCritical() const;
 
 	//other methods
-	virtual void attack();
+	virtual int attack();
 };
 
 //-------------------------------------Monster Class--------------------------------------

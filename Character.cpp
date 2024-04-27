@@ -57,4 +57,4 @@ int Character::getCritical() const {
 }
 
 //other methods
-void attack() {}
+int attack() {}

@@ -1,9 +1,6 @@
 #include "GameSystem.h"
-
 #include <iostream>
-
 #include <string>
-
 #include <fstream>
 
 void GameSystem::mainMenu() {
@@ -37,8 +34,6 @@ void GameSystem::mainMenu() {
 			mainMenu();
 		}
 	}
-
-
 }
 
 bool GameSystem::readText(std::string filePath) {
@@ -70,16 +65,18 @@ void GameSystem::newGame() {
 	player->setName(name);
 
 	std::cout << "Let's start your journey," << player->getName() << '\n';
-	readText("\\text\\introduce.txt");
+	readText("text\\introduce.txt");
 	play();
 }
 
 bool GameSystem::saveGame() {
-	std::string fileSaveLocation = "save\\save" + std::to_string(player->getSaveTimes()) + ".txt";
+	//Take the savefile location when the savefile has the .save 
+	std::string fileSaveLocation = "save\\save" + std::to_string(player->getSaveTimes()) + ".save";
 	std::ofstream fileSave(fileSaveLocation);
 
 	if (!fileSave.is_open()) {
 		std::cout << "Error !!!" << '\n';
+		return false;
 	}
 	else {
 		//save some basic informations
@@ -91,11 +88,28 @@ bool GameSystem::saveGame() {
 		fileSave << player->getExperience() << '\n';
 		fileSave << player->getCritical() << '\n';
 		fileSave << player->getSaveTimes() << '\n';
-
+		
 		//special information
+		fileSave << player->getChoosen() << '\n';
+		fileSave << player->getJew() << '\n';
+		fileSave << player->getVip() << '\n';
+		fileSave << player->getAdmin() << '\n';
+
+		//change the save times
+		player->setSaveTimes(player->getSaveTimes() + 1);
+
+		//close the file
+		fileSave.close();
+
+		//return true to inform that saving is complete
+		return true;
 	}
-	
-	
+	return true;
+}
+
+bool GameSystem::loadGame() {
+	std::ifstream loadFile;
+	std::string loadPath = "save\\";
 }
 
 void GameSystem::play() {
