@@ -4,7 +4,7 @@
 
 
 
-Player::Player() : Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false), saveTimes(0) {
+Player::Player() : Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false) {
 
 }
 
@@ -23,14 +23,7 @@ bool Player::getVip() const {
 	return isVip;
 }
 
-int Player::getSaveTimes() const {
-	return saveTimes;
-}
-
 //setter
-void Player::setSaveTimes(int saveTimes_) {
-	saveTimes = saveTimes_;
-}
 void Player::setChoosen(bool isChoosen_) {
 	isChoosenOne = isChoosen_;
 }

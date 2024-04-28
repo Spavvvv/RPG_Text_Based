@@ -12,7 +12,7 @@ enum class Basic_Monster {
 
 class Monster : public Character {
 public:
-	void attack();
+	int attack();
 };
 
 
@@ -26,7 +26,7 @@ public:
 
 
 	//methods
-	void attack();
+	int attack();
 };
 
 class Manh : public Monster {
@@ -38,7 +38,7 @@ public:
 	Manh() : Monster() {}
 
 	//methods
-	void attack();
+	int attack();
 
 };
 
@@ -51,5 +51,5 @@ public:
 	Dragon() : Monster() {}
 
 	//Methods
-	void attack();
+	int attack();
 };

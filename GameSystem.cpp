@@ -71,7 +71,7 @@ void GameSystem::newGame() {
 
 bool GameSystem::saveGame() {
 	//Take the savefile location when the savefile has the .save 
-	std::string fileSaveLocation = "save\\save" + std::to_string(player->getSaveTimes()) + ".save";
+	std::string fileSaveLocation = "save\\saveFile.save";
 	std::ofstream fileSave(fileSaveLocation);
 
 	if (!fileSave.is_open()) {
@@ -81,22 +81,18 @@ bool GameSystem::saveGame() {
 	else {
 		//save some basic informations
 		fileSave << player->getName() << '\n';
-		fileSave << player->getHealth() << '\n';
-		fileSave << player->getAttack() << '\n';
-		fileSave << player->getDefend() << '\n';
-		fileSave << player->getLevel() << '\n';
-		fileSave << player->getExperience() << '\n';
-		fileSave << player->getCritical() << '\n';
-		fileSave << player->getSaveTimes() << '\n';
+		fileSave << player->getHealth();
+		fileSave << player->getAttack();
+		fileSave << player->getDefend();
+		fileSave << player->getLevel();
+		fileSave << player->getExperience();
+		fileSave << player->getCritical();
 		
 		//special information
-		fileSave << player->getChoosen() << '\n';
-		fileSave << player->getJew() << '\n';
-		fileSave << player->getVip() << '\n';
-		fileSave << player->getAdmin() << '\n';
-
-		//change the save times
-		player->setSaveTimes(player->getSaveTimes() + 1);
+		fileSave << player->getChoosen();
+		fileSave << player->getJew();
+		fileSave << player->getVip();
+		fileSave << player->getAdmin();
 
 		//close the file
 		fileSave.close();
@@ -108,8 +104,65 @@ bool GameSystem::saveGame() {
 }
 
 bool GameSystem::loadGame() {
-	std::ifstream loadFile;
-	std::string loadPath = "save\\";
+	std::string loadPath = "save\\saveFile.save";		//access the save file location
+
+	std::ifstream loadFile(loadPath);
+
+	if (!loadFile.is_open()) {
+		std::cout << "Error !!!" << '\n';
+		std::cout << "Your save file is corrupted or something @@" << '\n';
+	}
+	else {
+
+		//------------------LOAD THE PLAYER INFORMATION----------------------
+
+		std::string line;
+		getline(loadFile, line);
+		//set player name
+		player->setName(line);
+
+		//set other information
+		getline(loadFile, line);
+		for (int index = 0; index < line.size(); index++) {
+			switch (index)
+			{
+			case 1:
+				player->setHealth(line[index] - '0');
+				break;
+			case 2:
+				player->setAttack(line[index] - '0');
+				break;
+			case 3:
+				player->setDefend(line[index] - '0');
+				break;
+			case 4:
+				player->setLevel(line[index] - '0');
+				break;
+			case 5:
+				player->setExperience(line[index] - '0');
+				break;
+			case 6:
+				player->setCritical(line[index] - '0');
+				break;
+			case 7:
+				player->setChoosen(line[index] - '0');
+				break;
+			case 8:
+				player->setJew(line[index] - '0');
+				break;
+			case 9:
+				player->setVip(line[index] - '0');
+				break;
+			case 10:
+				player->setAdmin(line[index] - '0');
+				break;
+			default:
+				break;
+			}
+		}
+
+		//-------------------LOAD THE PROCESS OF THE PLAYER-----------------------
+	}
 }
 
 void GameSystem::play() {
