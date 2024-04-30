@@ -12,7 +12,10 @@ enum class Basic_Monster {
 
 class Monster : public Character {
 public:
-	int attack();
+	Monster() : Character() {}
+
+	//methods
+	virtual int attack();
 };
 
 
@@ -22,11 +25,13 @@ private:
 
 public:
 	//Init
-	Undead() : Monster() {}
+	Undead() : Monster(), isHoly(false) {}
 
 
 	//methods
 	int attack();
+
+	static bool curse();
 };
 
 class Manh : public Monster {
@@ -35,10 +40,12 @@ private:
 
 public:
 	//Init
-	Manh() : Monster() {}
+	Manh() : Monster(), isJew(false) {}
 
 	//methods
 	int attack();
+
+	static bool hailH();
 
 };
 
@@ -48,8 +55,10 @@ private:
 
 public:
 	//Init
-	Dragon() : Monster() {}
+	Dragon() : Monster(), isChoosen(false) {}
 
 	//Methods
 	int attack();
+
+	static bool loser();
 };

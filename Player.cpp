@@ -4,7 +4,7 @@
 
 
 
-Player::Player() : Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false) {
+Player::Player() : Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false), money(0) {
 
 }
 
@@ -22,6 +22,10 @@ bool Player::getAdmin() const {
 bool Player::getVip() const {
 	return isVip;
 }
+int Player::getMoney() const {
+	return money;
+}
+
 
 //setter
 void Player::setChoosen(bool isChoosen_) {
@@ -36,7 +40,9 @@ void Player::setAdmin(bool isAdmin_) {
 void Player::setVip(bool isVip_) {
 	isVip = isVip_;
 }
-
+void Player::setMoney(int money_) {
+	money = money_;
+}
 
 //other methods
 
@@ -49,6 +55,7 @@ int Player::attack() {
 	int random = distribution(rng);
 	int dmg = 0;
 
+	//calculate the attack damage, hasn't add vip properties yet !
 	if (random <= critical_percent) {
 		dmg = Attack * 2;
 	}
@@ -59,6 +66,8 @@ int Player::attack() {
 }
 
 bool Player::run(int monsterPlayer) {
+
+	//Basic running way of user, haven't calcualte the Items and the Vip properties yet
 	if (level - monsterPlayer >= 5) {
 		return true;
 	}

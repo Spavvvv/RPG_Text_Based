@@ -75,7 +75,7 @@ bool GameSystem::saveGame() {
 	std::ofstream fileSave(fileSaveLocation);
 
 	if (!fileSave.is_open()) {
-		std::cout << "Error !!!" << '\n';
+		std::cout << "Error in Saving !!!" << '\n';
 		return false;
 	}
 	else {
@@ -94,6 +94,10 @@ bool GameSystem::saveGame() {
 		fileSave << player->getVip();
 		fileSave << player->getAdmin();
 
+		//money, yeah, actually, because it's money so.. y'all know, it should have a separate line.. 
+		// idk but maybe it'll give me some lucky like.. tomorrow, i'll pick up some of them.
+		fileSave << player->getMoney();
+
 		//close the file
 		fileSave.close();
 
@@ -109,7 +113,7 @@ bool GameSystem::loadGame() {
 	std::ifstream loadFile(loadPath);
 
 	if (!loadFile.is_open()) {
-		std::cout << "Error !!!" << '\n';
+		std::cout << "Error in loading.. !!!" << '\n';
 		std::cout << "Your save file is corrupted or something @@" << '\n';
 	}
 	else {
@@ -156,12 +160,15 @@ bool GameSystem::loadGame() {
 			case 10:
 				player->setAdmin(line[index] - '0');
 				break;
+			case 11:
+				player->setMoney(line[index] - '0');
+				break;
 			default:
 				break;
 			}
 		}
 
-		//-------------------LOAD THE PROCESS OF THE PLAYER-----------------------
+		//--------------------------------------------------------------------
 	}
 }
 

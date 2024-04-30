@@ -25,6 +25,8 @@ public:
 
 	void play();
 
+	void genMonster();
+
 	void fighting_Process();
 
 	void level_Up();

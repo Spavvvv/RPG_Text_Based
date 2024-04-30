@@ -40,7 +40,7 @@ public:
 
 	bool Sell();
 
-	bool Enhance();
+	static bool Enhance();
 
 	//For those who paid for the game, thanks
 	bool Cheat_Code();
