@@ -1,13 +1,7 @@
 #include "Character.h"
 
-Character::Character() {
-	name = "";
-	health = 0;
-	Attack = 0;
-	defend = 0;
-	level = 1;
-	experience = 0;
-	critical_percent = 0;
+Character::Character(std::string, int, int, int, int, int, int) : name(""), health(0), Attack(0), defend(0), level(1), experience(50), critical_percent(0) {
+	
 }
 
 //setter

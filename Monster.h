@@ -2,6 +2,8 @@
 
 #include "Character.h"
 
+#include <string>
+
 enum class Basic_Monster {
 	Globin,
 	Spyder,
@@ -14,6 +16,8 @@ class Monster : public Character {
 public:
 	Monster() : Character() {}
 
+	Monster(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent) : Character(name, health, Attack, defend, level, experience, critical_percent) {}
+
 	//methods
 	virtual int attack();
 };
@@ -25,7 +29,7 @@ private:
 
 public:
 	//Init
-	Undead() : Monster(), isHoly(false) {}
+	Undead(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isHoly) : Monster(name, health, Attack, defend, level, experience, critical_percent), isHoly(false) {}
 
 
 	//methods
@@ -40,7 +44,7 @@ private:
 
 public:
 	//Init
-	Manh() : Monster(), isJew(false) {}
+	Manh(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isJew) : Monster(name, health, Attack, defend, level, experience, critical_percent), isJew(false) {}
 
 	//methods
 	int attack();
@@ -55,7 +59,7 @@ private:
 
 public:
 	//Init
-	Dragon() : Monster(), isChoosen(false) {}
+	Dragon(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isChoosen) : Monster(name, health, Attack, defend, level, experience, critical_percent), isChoosen(false) {}
 
 	//Methods
 	int attack();

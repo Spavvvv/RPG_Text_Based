@@ -18,6 +18,8 @@ private:
 	
 	std::vector<Monster*> monster;
 
+	int Dungeon_level;
+
 public:
 	void mainMenu();
 

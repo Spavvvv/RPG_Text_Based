@@ -21,6 +21,8 @@ public:
 	//init
 	Character();
 
+	Character(std::string, int, int , int, int, int, int);
+
 	//setter
 	void setName(std::string name_);
 	void setHealth(int health_);

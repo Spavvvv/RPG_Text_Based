@@ -2,6 +2,14 @@
 
 #include "Character.h"
 
+const int PLAYER_MAX_HEALTH = 999;
+const int PLAYER_MAX_ATTACK = 999;
+const int PLAYER_MAX_DEFEND = 999;
+const int PLAYER_MAX_CRITICAL = 100;
+const int PLAYER_MAX_EXPERIENCE = 1000;
+const int PLAYER_MAX_LEVEL = 99;
+
+
 class Player : public Character {
 private:
 	//special properties
@@ -18,7 +26,7 @@ private:
 
 public:
 	//Init
-	Player();
+	Player() : Character() {};
 
 	//Getter
 	bool getChoosen() const;
