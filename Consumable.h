@@ -13,12 +13,11 @@ public:
     //Init
     Consumable();
     //Getter
-    getQuantity();
-    getDuration();
+    int getQuantity();
+    int getDuration();
     //Setter
-    setQuantity();
-    setDuration();
+    void setQuantity(int);
+    void setDuration(int);
     //Others
-    use();
-
-}
+    void use();
+};
