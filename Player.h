@@ -58,6 +58,8 @@ public:
 
 	bool run(int monsterLevel);
 
+	void run();
+
 	void adminPanel();
 
 };

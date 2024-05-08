@@ -20,6 +20,7 @@ public:
 
 	//methods
 	virtual int attack();
+	virtual void display();
 };
 
 
@@ -36,6 +37,8 @@ public:
 	int attack();
 
 	static bool curse();
+
+	void display();
 };
 
 class Manh : public Monster {
@@ -51,6 +54,8 @@ public:
 
 	static bool hailH();
 
+	void display();
+
 };
 
 class Dragon : public Monster {
@@ -65,4 +70,6 @@ public:
 	int attack();
 
 	static bool loser();
+
+	void display();
 };

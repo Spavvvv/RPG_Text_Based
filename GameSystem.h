@@ -25,6 +25,8 @@ public:
 
 	void newGame();
 
+	void option();
+
 	void play();
 
 	void genMonster();
@@ -37,9 +39,13 @@ public:
 
 	bool loadGame();
 
+	void openBag();
+
 	void encounter();
 
 	void exit();
+
+	void clearCin();
 
 	void author();
 

@@ -1,4 +1,4 @@
-#include "GameSystem.h"
+﻿#include "GameSystem.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -42,6 +42,10 @@ void GameSystem::mainMenu() {
 			mainMenu();
 		}
 	}
+
+	//clear the std::cin and the cin buffer if the player doing some tricks to destroy the program
+	//fk tester, btw
+	clearCin();
 }
 
 bool GameSystem::readText(std::string filePath) {
@@ -305,12 +309,110 @@ void GameSystem::genMonster() {
 	}
 }
 
-void GameSystem::play() {
+//the process include using items before figting and some other options like running or.. hmm
+//idk, i'll add that later
+void GameSystem::fighting_Process() {
+	std::cout << "1. Show the monster information" << '\n';
+	std::cout << "2. Using items" << '\n';
+	std::cout << "3.Fight" << '\n';
+	std::cout << "4. Run (´。＿。｀)";
+	if (player->getAdmin() == true) {
+		std::cout << "Admin" << '\n';
+	}
+
+	std::string choice;
+	std::cin >> choice;
+	int Ichoice = 0;
 	
+	if (choice.length() == 1 && stoi(choice) > 0 && stoi(choice) < 5) {
+		Ichoice = stoi(choice);
+
+		if (Ichoice == 1) {
+			monster[0]->display();
+		}
+		else if (Ichoice == 2) {
+			openBag();
+		}
+		else if (Ichoice == 3) {
+
+		}
+	}
+}
+
+
+void GameSystem::option() {
+	std::cout << "1. Go to next level" << '\n';
+	std::cout << "2. Go Shopping..." << '\n';
+	std::cout << "3. Return to the main menu" << '\n';
+	std::cout << "4. Return to the Desktop screen.." << '\n';
+
+	std::string choice;
+	
+	std::cin >> choice;
+	if (choice.length() == 1 && stoi(choice) > 0 && stoi(choice) < 5) {
+
+		int Ichoice = stoi(choice);
+		if (Ichoice == 1) {
+			genMonster();
+			play();
+		}
+		else if (Ichoice == 2) {
+			menuShop();		//menu of the shop, rn, 8_5_24, it's not available yet, but i think soon.
+			option();
+		}
+		else if (Ichoice == 3) {
+			saveGame();
+			mainMenu();
+		}
+		else {
+			std::cout << "Oh, hmm, actually, i forgot to tell you that choosing this option will not save the process..." << '\n';
+			std::cout << "Hehehehehe" << '\n';
+			exit();
+		}
+	}
+
+	//clear the std::cin and the cin buffer if the player doing some tricks to destroy the program
+	//fk tester, btw
+	clearCin();
+}
+
+void GameSystem::play() {
+
+	//random of the encounter
+	std::mt19937_64 rng{ std::random_device{} () };
+	std::uniform_int_distribution <std::size_t> distribution(0, 100);
+
+	int change = 10;		// the lucky number choose by Duy Shitman :>
+	while (true) {
+		if (change == distribution(rng)) {
+			encounter();
+		}
+
+		if (monster.empty() != true) {
+			std::cout << "Monster detected !" << '\n';
+			fighting_Process();
+
+			//consider if the player has enough experience to level up
+			if (player->getLevel() >= 100) {
+				level_Up();
+			}
+		}
+		if (monster.empty() == true) {
+			std::cout << "Level " << Dungeon_level << "cleared !" << '\n';
+			Dungeon_level++;
+			option();
+		}
+	}
+
 }
 
 void GameSystem::exit() {
 	std::cout << "Have a good day !" << '\n';
 	std::cout << "Well, forgot to tell you that this game don't have auto save =]]]]]" << 'n';
 	std::exit(0);
+}
+
+void GameSystem::clearCin() {
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
