@@ -357,7 +357,8 @@ void GameSystem::option() {
 			play();
 		}
 		else if (Ichoice == 2) {
-			menuShop();		//menu of the shop, rn, 8_5_24, it's not available yet, but i think soon.
+			Shop* shopping_place = new Shop();
+			shopping_place->menuShop();		//menu of the shop, rn, 8_5_24, it's not available yet, but i think soon.
 			option();
 		}
 		else if (Ichoice == 3) {
@@ -393,7 +394,7 @@ void GameSystem::play() {
 			fighting_Process();
 
 			//consider if the player has enough experience to level up
-			if (player->getLevel() >= 100) {
+			if (player->getExperience() >= 100) {
 				level_Up();
 			}
 		}

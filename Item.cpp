@@ -9,18 +9,20 @@
 		this->level = -1;
 		this->money = -1;
 		this->health = 0;
-		this->attack = 0;
+		this->Attack = 0;
 		this->defend = 0;
+		this->critical = 0;
 		this->id = newID;
 	}
-	Item::Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newID){
+	Item::Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID){
 		this->name = newName;
 		this->type = newType;
 		this->level = newLevel;
 		this->money = newMoney;
 		this->health = newHealth;
-		this->attack = newAttack;
+		this->Attack = newAttack;
 		this->defend = newDefend;
+		this->critical = newCritical_percent;
 		this->id = newID;
 	}
 	Item::~Item() {}
@@ -42,10 +44,16 @@
 		return health;
 	}
 	int Item::getAttack() const {
-		return attack;
+		return Attack;
 	}
 	int Item::getDefend() const {
 		return defend;
+	}
+	int Item::getCritical_percent() const {
+		return critical;
+	}
+	std::string Item::getDescription() const {
+		return description;
 	}
 	int Item::getID() const {
 		return id;
@@ -68,10 +76,16 @@
 		this->health = newHealth;
 	}
 	void Item::setAttack(int newAttack) {
-		this->attack = newAttack;
+		this->Attack = newAttack;
 	}
 	void Item::setDefend(int newDefend) {
 		this->defend = newDefend;
+	}
+	void Item::setCritical_percent(int newCritical_percent) {
+		this->critical = newCritical_percent;
+	}
+	void Item::setDescription(std::string newDescription) {
+		this->description = newDescription;
 	}
 	void Item::setID(int newID) {
 		this->id = newID;
