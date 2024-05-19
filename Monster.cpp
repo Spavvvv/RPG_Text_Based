@@ -86,11 +86,20 @@ int Manh::health() {
 	return health;
 }
 bool Undead::curse() {
-
+	return true;
 }
 bool Manh::hailH() {
-
+	return true;
 }
 bool Dragon::loser() {
-
+	return true;
 }	
+void display() {
+	if (bool Undead::curse() == false) {
+		cout << "Ineffective!!" << endl;
+	}
+	else {
+		cout << "The monster has" << getHealth() << "left" << endl;
+	}
+	
+}
