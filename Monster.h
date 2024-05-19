@@ -21,6 +21,7 @@ public:
 	//methods
 	virtual int attack();
 	virtual void display();
+ 	virtual int health();
 };
 
 
@@ -35,6 +36,9 @@ public:
 
 	//methods
 	int attack();
+	int health();
+	void attack(int attack);
+	void health(int health);
 
 	static bool curse();
 
@@ -51,6 +55,9 @@ public:
 
 	//methods
 	int attack();
+	int health();
+	void attack(int attack);
+	void health(int health);
 
 	static bool hailH();
 
@@ -68,6 +75,9 @@ public:
 
 	//Methods
 	int attack();
+	int health();
+	void attack(int attack);
+	void health(int health);
 
 	static bool loser();
 
