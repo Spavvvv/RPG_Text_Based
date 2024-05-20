@@ -9,8 +9,8 @@
 #include "Consumable.h"
 
 //Init
-Player::Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip, int money)
-	: Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false), money(0) {
+Player::Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip)
+	: Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false) {
 
 	for (int i = 0; i < 6; i++) {
 		Box[i] = nullptr;
@@ -32,9 +32,9 @@ bool Player::getAdmin() const {
 bool Player::getVip() const {
 	return isVip;
 }
-int Player::getMoney() const {
+/*int Player::getMoney() const {
 	return money;
-}
+}*/
 std::vector<Item*> Player::getBag() const {
 	return Bag;
 }
@@ -84,9 +84,9 @@ void Player::setAdmin(bool isAdmin_) {
 void Player::setVip(bool isVip_) {
 	isVip = isVip_;
 }
-void Player::setMoney(int money_) {
+/*void Player::setMoney(int money_) {
 	money = money_;
-}
+}*/
 void Player::setBag(Item* item) {
 	Bag.push_back(item);
 }

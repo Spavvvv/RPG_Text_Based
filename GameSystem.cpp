@@ -87,7 +87,7 @@ void GameSystem::newGame() {
 
 void GameSystem::level_Up() {
 	while (player->getExperience() >= 100) {
-		player->setHealth(player->getHealth() + 20);
+		player->setMaxHealth(player->getMaxHealth() + 20);
 		player->setAttack(player->getAttack() + 5);
 		player->setDefend(player->getDefend() + 5);
 		player->setLevel(player->getLevel() + 1);
@@ -112,6 +112,7 @@ bool GameSystem::saveGame() {
 		//save some basic informations
 		fileSave << player->getName() << '\n';
 		fileSave << player->getHealth();
+		fileSave << player->getMaxHealth();
 		fileSave << player->getAttack();
 		fileSave << player->getDefend();
 		fileSave << player->getLevel();
@@ -167,33 +168,36 @@ bool GameSystem::loadGame() {
 				player->setHealth(line[index] - '0');
 				break;
 			case 2:
-				player->setAttack(line[index] - '0');
+				player->setMaxHealth(line[index] - '0');
 				break;
 			case 3:
-				player->setDefend(line[index] - '0');
+				player->setAttack(line[index] - '0');
 				break;
 			case 4:
-				player->setLevel(line[index] - '0');
+				player->setDefend(line[index] - '0');
 				break;
 			case 5:
-				player->setExperience(line[index] - '0');
+				player->setLevel(line[index] - '0');
 				break;
 			case 6:
-				player->setCritical(line[index] - '0');
+				player->setExperience(line[index] - '0');
 				break;
 			case 7:
-				player->setChoosen(line[index] - '0');
+				player->setCritical(line[index] - '0');
 				break;
 			case 8:
-				player->setJew(line[index] - '0');
+				player->setChoosen(line[index] - '0');
 				break;
 			case 9:
-				player->setVip(line[index] - '0');
+				player->setJew(line[index] - '0');
 				break;
 			case 10:
-				player->setAdmin(line[index] - '0');
+				player->setVip(line[index] - '0');
 				break;
 			case 11:
+				player->setAdmin(line[index] - '0');
+				break;
+			case 12:
 				player->setMoney(line[index] - '0');
 				break;
 			default:
@@ -369,6 +373,7 @@ void GameSystem::fighting_Process() {
 				else {
 					//Clear the monster out of the vector
 					std::cout << "Monster died ! \n";
+					player->setMoney(player->getMoney() + monster[0]->getMoney());
 					delete monster[0];
 					monster.erase(monster.begin());
 				}
@@ -426,11 +431,12 @@ void GameSystem::option() {
 		}
 		else if (Ichoice == 2) {
 			int item, amount;
-			Shop->Shopping(&item, &amount);
+			Shop->shopping(player);
 			option();
 		}
 		else if (Ichoice == 3) {
 			player->openBag();
+			option();
 		}
 		else if (Ichoice == 4) {
 			saveGame();

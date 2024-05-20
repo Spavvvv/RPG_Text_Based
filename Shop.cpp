@@ -5,7 +5,7 @@
 #include "Player.h"
 
 
-Shop::Shop() {
+Shop::Shop() { // Generates all items
     EquipmentsInStock.emplace_back("Old Sword", "Weapon", 1, 50, 0, 0, 5, 0, 0, 101, "+5 Attack. The most basic weapon for an adventurer, essential for early grind", 100, false);
     EquipmentsInStock.emplace_back("Old Armor", "Armor", 1, 50, 0, 25, 0, 0, 0, 111, "+25 Max Health. Gives you a tiny bit of HP. Bulk up soldier!", 100, false);
     EquipmentsInStock.emplace_back("Old Helmet", "Helmet", 1, 50, 0, 0, 0, 5, 0, 121, "+5 Defend. Protects you from incoming damages, withstand more attacks from regular monsters", 100, false);
@@ -19,28 +19,35 @@ Shop::Shop() {
     ConsumablesInStock.emplace_back("Enhance Stone", "Enhance", 1, 15, 0, 0, 0, 0, 0, 240, "Boost the chance of successful enhancement", 0);
 }
 
-void Shop::Shopping(int* item, int* amount) {
+void Shop::shopping(Player* player) {
+    int option;
     std::cout << "Welcome to the shop! Fancy any of these?" << std::endl;
-    for (int i = 0; i < EquipmentsInStock.size(); i++) {
+    for (int i = 0; i < EquipmentsInStock.size(); i++) { // Shows all equipments
         std::cout << i + 1 << ". " << EquipmentsInStock[i]->getName() << std::endl << "Type: " << EquipmentsInStock[i]->getType() << std::endl << EquipmentsInStock[i]->getDescription() << std::endl << "Price: " << EquipmentsInStock[i]->getMoney() << std::endl;
     }
-    for (int i = 0; i < ConsumablesInStock.size(); i++) {
+    for (int i = 0; i < ConsumablesInStock.size(); i++) { // Shows all consumables
         std::cout << i + 5 << ". " << ConsumablesInStock[i]->getName() << std::endl << "Type: " << ConsumablesInStock[i]->getType() << std::endl << ConsumablesInStock[i]->getDescription() << std::endl << "Price: " << ConsumablesInStock[i]->getMoney() << std::endl;
     }
-    std::cout << "Type the number before the name of the item you want to buy." << std::endl;
-    std::cin >> *item;
-    std::cout << "How many of it do you want to buy?" << std::endl;
-    std::cin >> *amount;
+    std::cout << "Your money: " << player->getMoney() << std::endl;
+    std::cout << "1. Buy something" << std::endl << "2. Exit" << std::endl;
+    std::cin >> option;
+    if (option == 1) buy(player);
 }
-void Shop::Buy(Player* player, int* item, int* amount) {
-    if (*item < 5) {
-        for (int j = 0; j < *amount; j++) {
-            player->setBag(EquipmentsInStock[*item - 1]);
+void Shop::buy(Player* player) {
+    int item, amount;
+    std::cout << "Type the number before the name of the item you want to buy." << std::endl; //
+    std::cin >> item;
+    std::cout << "How many of it do you want to buy?" << std::endl;
+    std::cin >> amount;
+    if (item < 5) {
+        for (int j = 0; j < amount; j++) {
+            player->setBag(EquipmentsInStock[item - 1]);
         }
     }
-    else if (*item >= 5) {
-        for (int j = 0; j < *amount; j++) {
-            player->setBag(ConsumablesInStock[*item - 5]);
+    else if (item >= 5) {
+        for (int j = 0; j < amount; j++) {
+            player->setBag(ConsumablesInStock[item - 5]);
         }
     }
+    shopping(player);
 }

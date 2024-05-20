@@ -42,9 +42,9 @@ public:
 	//setter
 
 	//Shows all items
-	void Shopping(int*, int*);
+	void shopping(Player*);
 	//Buy items
-	void Buy(Player*, int*, int*);
+	void buy(Player*);
 
 	//For those who paid for the game, thanks
 	bool Cheat_Code();

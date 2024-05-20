@@ -1,7 +1,17 @@
 #include "Character.h"
 
-Character::Character(std::string, int, int, int, int, int, int) : name(""), health(0), Attack(0), defend(0), level(1), experience(50), critical_percent(0) {
-	
+Character::Character() : name(""), health(0), maxHealth(0), Attack(0), defend(0), level(1), experience(50), critical_percent(0), money(0) {}
+
+Character::Character(std::string newName, int newHealth, int newMaxHealth, int newAttack, int newDefend, int newLevel, int newExperience, int newCritical_percent, int newMoney) {
+	name = newName;
+	health = newHealth;
+	maxHealth = newMaxHealth;
+	Attack = newAttack;
+	defend = newDefend;
+	level = newLevel;
+	experience = newExperience;
+	critical_percent = newCritical_percent;
+	money = newMoney;
 }
 
 //setter
@@ -29,6 +39,9 @@ void Character::setExperience(int experience_) {
 void Character::setCritical(int critical_) {
 	critical_percent = critical_;
 }
+void Character::setMoney(int newMoney) {
+	money = newMoney;
+}
 
 //getter
 std::string Character::getName() const {
@@ -55,8 +68,6 @@ int Character::getExperience() const {
 int Character::getCritical() const {
 	return critical_percent;
 }
-
-//other methods
-int attack() {
-	return 0;
+int Character::getMoney() const {
+	return money;
 }

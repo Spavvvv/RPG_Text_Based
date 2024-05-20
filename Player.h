@@ -31,7 +31,7 @@ private:
 
 public:
 	//Init
-	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip, int money) {}
+	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip) {}
 
 	//Getter
 	bool getChoosen() const;

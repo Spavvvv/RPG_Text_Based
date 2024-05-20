@@ -18,11 +18,12 @@ protected:
 	int level;
 	int experience;
 	int critical_percent;
+	int money;
 public:
 	//init
 	Character();
 
-	Character(std::string, int, int , int, int, int, int);
+	Character(std::string, int, int, int, int, int, int, int, int);
 
 	//setter
 	void setName(std::string name_);
@@ -33,6 +34,7 @@ public:
 	void setLevel(int level_);
 	void setExperience(int experience_);
 	void setCritical(int critical_);
+	void setMoney(int newMoney);
 
 	//getter
 	std::string getName() const;
@@ -43,6 +45,7 @@ public:
 	int getLevel() const;
 	int getExperience() const;
 	int getCritical() const;
+	int getMoney() const;
 
 	//other methods
 	virtual int attack();
