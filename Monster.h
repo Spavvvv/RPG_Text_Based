@@ -4,24 +4,25 @@
 
 #include <string>
 
-enum class Basic_Monster {
-	Globin,
-	Spyder,
-	Khoi
+	enum class Basic_monster {
+	Undead,
+	Dragon,
+	Goblin
 };
 
 
-
 class Monster : public Character {
+
 public:
+
 	Monster() : Character() {}
 
 	Monster(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent) : Character(name, health, Attack, defend, level, experience, critical_percent) {}
 
 	//methods
-	virtual int attack();
-	virtual void display();
- 	virtual int health();
+	virtual int attack() {};
+	virtual void display() {};
+	virtual int health() {};
 };
 
 
@@ -33,35 +34,32 @@ public:
 	//Init
 	Undead(bool isHoly) : Monster(), isHoly(false) {}
 
-	Undead(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isHoly) : Monster(name, health, Attack, defend, level, experience, critical_percent), isHoly(false) {}
+	Undead(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isHoly) : Monster(name, health, Attack, defend, level, experience, critical_percent), isHoly(false) {};
 
 
 	//methods
 	int attack();
-	int health();
-	void attack(int attack);
-	void health(int health);
-
+	int gethealth();
+	void sethealth(int health);
 	static bool curse();
 
 	void display();
 };
 
-class Manh : public Monster {
+class Dragon : public Monster {
 private:
 	bool isJew;
 
 public:
 	//Init
-	Manh(bool isJew) : Monster(), isJew(false) {}
+	Dragon(bool isJew) :Monster(), isJew(false) {}
 
-	Manh(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isJew) : Monster(name, health, Attack, defend, level, experience, critical_percent), isJew(false) {}
+	Dragon(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isJew) : Monster(name, health, Attack, defend, level, experience, critical_percent), isJew(false) {}
 
 	//methods
 	int attack();
-	int health();
-	void attack(int attack);
-	void health(int health);
+	int gethealth();
+	void sethealth(int health);
 
 	static bool hailH();
 
@@ -69,21 +67,20 @@ public:
 
 };
 
-class Dragon : public Monster {
+class Manh : public Monster {
 private:
 	bool isChoosen;
 
 public:
 	//Init
-	Dragon(bool isChoosen) : Monster(), isChoosen(false) {}
+	Manh(bool isChoosen) : Monster(), isChoosen(false) {}
 
-	Dragon(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isChoosen) : Monster(name, health, Attack, defend, level, experience, critical_percent), isChoosen(false) {}
+	Manh(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isChoosen) : Monster(name, health, Attack, defend, level, experience, critical_percent), isChoosen(false) {}
 
 	//Methods
 	int attack();
-	int health();
-	void attack(int attack);
-	void health(int health);
+	int gethealth();
+	void sethealth(int health);
 
 	static bool loser();
 

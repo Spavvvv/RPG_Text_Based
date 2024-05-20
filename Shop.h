@@ -42,14 +42,13 @@ public:
 	//setter
 
 	//other methods
-	bool Buy();
+	void Buy(Player*, int*, int*);
 
-	bool Sell();
+	void Sell(Player*, int*, int*);
 
 	static bool Enhance();
-	void menuShop();
 
-	void Shopping(Player* player);
+	void Shopping(int*, int*);
 
 	//For those who paid for the game, thanks
 	bool Cheat_Code();

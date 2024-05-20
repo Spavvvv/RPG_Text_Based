@@ -11,23 +11,30 @@
 		this->level = -1;
 		this->money = -1;
 		this->health = 0;
+		this->maxHealth = 0;
 		this->Attack = 0;
 		this->defend = 0;
 		this->critical_percent = 0;
 		id = 0;
+		this->description = "";
 	}
+
 	Item::Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, std::string description, int newID){
+
+	Item::Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newMaxHealth, int newAttack, int newDefend, int newCritical_percent, int newID, std::string newDescription){
+
 		this->name = newName;
 		this->type = newType;
 		this->level = newLevel;
 		this->money = newMoney;
 		this->health = newHealth;
+		this->maxHealth = newMaxHealth;
 		this->Attack = newAttack;
 		this->defend = newDefend;
 		this->critical_percent = newCritical_percent;
 		this->id = newID;
+		this->description = newDescription;
 	}
-	Item::~Item() {}
 
 	//Getters
 	std::string Item::getName() const {
