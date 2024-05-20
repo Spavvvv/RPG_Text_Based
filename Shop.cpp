@@ -2,6 +2,8 @@
 #include "Item.h"
 #include "Equipment.h"
 #include "Consumable.h"
+
+
 Shop::menuShop() {
     EquipmentsInStock.emplace_back("Old Sword", "Weapon", 1, 50, 0, 5, 0, 0, 101, "The most basic weapon for an adventurer, essential for early grind", 100, false);
     EquipmentsInStock.emplace_back("Old Armor", "Armor", 1, 50, 25, 0, 0, 0, 121, "Gives you a tiny bit of HP. Bulk up soldier!", 100, false);

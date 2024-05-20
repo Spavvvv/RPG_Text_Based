@@ -334,7 +334,7 @@ void GameSystem::fighting_Process() {
 			monster[0]->display();
 		}
 		else if (Ichoice == 2) {
-			openBag();
+			player->openBag();
 		}
 		else if (Ichoice == 3) {
 			while (player->getHealth() > 0) {	// the monster always is the first monster
@@ -342,13 +342,25 @@ void GameSystem::fighting_Process() {
 											
 			
 				// The player always attack first, the system of god given to the choosen =]]]]
-				std::cout << player->getName() << "has attack " << monster[0]->getName() << "with " << player->attack() << "damage\n";
-				monster[0]->setHealth(monster[0]->getHealth() - player->attack());
+				if (player->attack() - monster[0]->getDefend() > 0) {
+					std::cout << player->getName() << "has attack " << monster[0]->getName() << "with " << player->attack() - monster[0]->getDefend() << "damage\n";
+					monster[0]->setHealth(monster[0]->getHealth() - (player->attack() - monster[0]->getDefend()));
+				}
+				else {
+					std::cout << player->getName() << "has attack " << monster[0]->getName() << "with " << 0 << "damage\n";
+					monster[0]->setHealth(monster[0]->getHealth() - 0);
+				}
 
 				//validate if the monster still alive
 				if (monster[0]->getHealth() > 0) {
-					std::cout << monster[0]->getName() << "has attack " << player->getName() << "with " << monster[0]->attack() << "damage\n";
-					player->setHealth(player->getHealth() - monster[0]->attack());
+					if (monster[0]->getAttack() - player->getDefend() > 0) {
+						std::cout << monster[0]->getName() << "has attack " << player->getName() << "with " << monster[0]->getAttack() - player->getDefend() << "damage\n";
+						player->setHealth(player->getHealth() - monster[0]->attack());
+					}
+					else {
+						std::cout << monster[0]->getName() << "has attack " << player->getName() << "with " << 0 << "damage\n";
+						player->setHealth(player->getHealth() - 0);
+					}
 				}
 				else {
 					//Clear the monster out of the vector
@@ -383,7 +395,8 @@ void GameSystem::fighting_Process() {
 		//hmm
 		if (Ichoice == 123 && player->getAdmin() == true) {
 			monster[0]->setHealth(0);
-			std::cout << "Monster health has been set to 0\n";
+			monster[0]->setDefend(0);
+			std::cout << "Monster health and defend has been set to 0\n";
 			fighting_Process();
 		}
 	}

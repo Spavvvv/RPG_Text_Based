@@ -41,8 +41,6 @@ public:
 
 	bool loadGame();
 
-	void openBag();
-
 	void encounter();
 
 	void exit();

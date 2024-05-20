@@ -23,6 +23,37 @@ int Player::getMoney() const {
 	return money;
 }
 
+int Player::getHealth() const{
+	int additionalHealth = 0;
+	for (int i = 0; i < Box.size(); i++) {
+		additionalHealth += Box[i]->getHealth();
+	}
+	return health + additionalHealth;
+}
+
+int Player::getAttack() const{
+	int additionalAttack = 0;
+	for (int i = 0; i < Box.size(); i++) {
+		additionalAttack += Box[i]->getAttack();
+	}
+	return Attack + additionalAttack;
+}
+
+int Player::getDefend() const{
+	int additionalDefend = 0;
+	for (int i = 0; i < Box.size(); i++) {
+		additionalDefend += Box[i]->getDefend();
+	}
+	return defend + additionalDefend;
+}
+
+int Player::getCritical() const{
+	int additionalCrit = 0;
+	for (int i = 0; i < Box.size(); i++) {
+		additionalCrit += Box[i]->getCritical_percent();
+	}
+	return critical_percent + additionalCrit;
+}
 
 //setter
 void Player::setChoosen(bool isChoosen_) {
@@ -59,7 +90,12 @@ int Player::attack() {
 	else {
 		dmg = Attack;
 	}
-	return dmg;
+	
+	int additionalAtk = 0;
+	for (int i = 0; i < Box.size(); i++) {
+		additionalAtk += Box[i]->getCritical_percent();
+	}
+	return dmg + additionalAtk;
 }
 
 //method for open the bag
@@ -75,6 +111,9 @@ void Player::openBag() {
 	if (option > 0 && option <= Bag.size()) {
 		if (option % 2 == 1) {
 			Equip(option);
+		}
+		else {
+			useItem(option);
 		}
 	}
 	
@@ -94,23 +133,37 @@ bool Player::run(int monsterLevel) {
 }
 
 //methods for equipable items
-void Player::checkEquip(int index, std::string type) {
-
-}
 
 void Player::Equip(int index) {
+	//check if the new equipment item type is wearing or not 
 	if (Bag[index]->getType() == "Weapon") {
 		if (hasWeapon == true) {
 			unEquip("Weapon");
 		}
-	
-		Box.push_back(Bag[index]);
-
-
-		//delete the item out of the bag
-		delete Bag[index];
-		Bag.erase(Bag.begin() + index);
 	}
+	else if (Bag[index]->getType() == "Armor") {
+		if (hasArmor == true) {
+			unEquip("Armor");
+		}
+	}
+	else if (Bag[index]->getType() == "Helmet") {
+		if (hasHelmet == true) {
+			unEquip("Helmet");
+		}
+	}
+	else {
+		if (hasRing == true) {
+			unEquip("Ring");
+		}
+	}
+
+	//Eqiup the item
+	Box.push_back(Bag[index]);
+
+
+	//delete the item out of the bag
+	delete Bag[index];
+	Bag.erase(Bag.begin() + index);
 }
 
 void Player::unEquip(std::string type) {
@@ -129,6 +182,17 @@ void Player::unEquip(std::string type) {
 
 
 //methods for consumable items
-void Player::useItem() {
-
+void Player::useItem(int index) {
+	if (Bag[index]->getType() == "Healing") {
+		if (isUsingHealing == true) {
+			std::cout << "U can use that more than one time !!! \n";
+		}
+	}
+	else if (Bag[index]->getType() == "Boosting") {
+		if (isUsingBoosting == true) {
+			std::cout << "U can use that more than one time !!! \n";
+		}
+	}
+	
+	Box.push_back(Bag[index]);
 }

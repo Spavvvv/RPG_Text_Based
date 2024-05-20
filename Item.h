@@ -52,7 +52,7 @@ public:
 	//Other methods
 	void deleteItem();
 
-	//Special operator in the item class
+	//Special operator in the item class, idk if we gonna use it or not..
 	Item& operator=(const Item& item) {
 		if (this == &item) {
 			return *this;

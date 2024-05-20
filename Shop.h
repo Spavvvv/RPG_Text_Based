@@ -10,22 +10,22 @@
 
 #include "Player.h"
 
-enum class WeaponType {
-	Sword,
-	Shield,
-	Shoe,
-	Ring,
-	Axe,
-	Bow
-};
+//enum class WeaponType {
+//	Sword,
+//	Shield,
+//	Shoe,
+//	Ring,
+//	Axe,
+//	Bow
+//};
 
-enum class Consumable_Items {
-	Potion,				// healing 
-	Red_Blue,			// legend Item of bach khoa university, increase the attack 
-	Purge,				// increase the success of Running
-	Resistance,			// increase the defend of player
-	Tear_Of_Lucky		// Increasing Lucky and the Critical Rate
-};
+//enum class Consumable_Items {
+//	Potion,				// healing 
+//	Red_Blue,			// legend Item of bach khoa university, increase the attack 
+//	Purge,				// increase the success of Running
+//	Resistance,			// increase the defend of player
+//	Tear_Of_Lucky		// Increasing Lucky and the Critical Rate
+//};
 
 class Shop {
 private:
@@ -47,7 +47,7 @@ public:
 	bool Sell();
 
 	static bool Enhance();
-
+	void menuShop();
 	void Shopping(Player* player);
 
 	//For those who paid for the game, thanks

@@ -27,15 +27,23 @@ private:
 	//money
 	int money;
 
-	//properties for detect if player has equip items or not
+	//properties for detecting if player has equip items or not
 	bool hasWeapon;	
 	bool hasArmor;
 	bool hasHelmet;
 	bool hasRing;
+
+	//properties for dectecting if player is using consumable or not
+	bool isUsingHealing;
+	bool isUsingBoosting;
+
+	//properties that counting the effect of the consumable items
+	//int healingCount;
+
 public:
 	//Init
-	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip, int money, bool hasWeapon, bool hasArmor, bool hasHelmet, bool hasRing) 
-		: Character(), isChoosenOne(false), isJew(false), isAdmin(false) , isVip(false), money(0), hasWeapon(false), hasArmor(false), hasHelmet(false), hasRing(false) {};
+	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip, int money, bool hasWeapon, bool hasArmor, bool hasHelmet, bool hasRing, bool isUsingHealing, bool isUsingBoosting)
+		: Character(), isChoosenOne(false), isJew(false), isAdmin(false) , isVip(false), money(0), hasWeapon(false), hasArmor(false), hasHelmet(false), hasRing(false), isUsingHealing(false), isUsingBoosting(false) {};
 
 	//Getter
 	bool getChoosen() const;
@@ -54,22 +62,25 @@ public:
 	//Other methods
 	int attack();
 
+	//getter
+	int getHealth() const;
+	int getAttack() const;
+	int getDefend() const;
+	int getCritical() const;
+
 	//method for open the bag
 	void openBag();
-
-	//methods for equipable items
-	void checkEquip(int index, std::string type);
 
 	void Equip(int index);
 
 	void unEquip(std::string type);
 
 	//methods for consumable items
-	void useItem();
+	void useItem(int index);
+
+	void Expire();
 
 	bool run(int monsterLevel);
-
-	static bool run();
 
 	void adminPanel();
 
