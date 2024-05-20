@@ -11,6 +11,9 @@ void Character::setName(std::string name_) {
 void Character::setHealth(int health_) {
 	health = health_;
 }
+void Character::setMaxHealth(int max_health_) {
+	maxHealth = max_health_;
+}
 void Character::setAttack(int Attack_) {
 	Attack = Attack_;
 }
@@ -33,6 +36,9 @@ std::string Character::getName() const {
 }
 int Character::getHealth() const {
 	return health;
+}
+int Character::getMaxHealth() const {
+	return maxHealth;
 }
 int Character::getAttack() const {
 	return Attack;

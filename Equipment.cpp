@@ -3,9 +3,10 @@
 #include<iostream>
 #include<string>
 
-Equipment::Equipment() : Item(int newID) {
-    this->durability = 100;
-    this->isWearing = false;
+Equipment::Equipment(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID, int newDurability, bool newIsWearing) : Item(newName, newType, newLevel, newMoney, newHealth, newAttack, newDefend, newCritical_percent, newID), durability(newDurability), isWearing(newIsWearing) {}
+
+void Equipment::deleteItem() {
+    delete this;
 }
 
   //Getters
@@ -38,7 +39,4 @@ void Equipment::breakItem() {
     if (choice == 1) {
         Item::deleteItem();
     }
-}
-void Equipment::deleteItem() {
-    delete this;
 }

@@ -12,6 +12,7 @@ class Character {
 protected:
 	std::string name;
 	int health;
+	int maxHealth;
 	int Attack;
 	int defend;
 	int level;
@@ -26,6 +27,7 @@ public:
 	//setter
 	void setName(std::string name_);
 	void setHealth(int health_);
+	void setMaxHealth(int max_health_);
 	void setAttack(int Attack_);
 	void setDefend(int defend_);
 	void setLevel(int level_);
@@ -35,6 +37,7 @@ public:
 	//getter
 	std::string getName() const;
 	int getHealth() const;
+	int getMaxHealth() const;
 	int getAttack() const;
 	int getDefend() const;
 	int getLevel() const;

@@ -24,12 +24,13 @@ enum class Consumable_Items {
 
 class Shop {
 private:
-	std::vector<Item*> Inventory;
+	std::vector<Equipment*> EquipmentsInStock;
+	std::vector<Consumable*> ConsumablesInStock;
 
-	int money;
+//	int money;
 public:
 	//Init
-	Shop();
+	menuShop();
 
 	//getter
 

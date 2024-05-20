@@ -7,17 +7,14 @@
 
 class Consumable : public Item {
 private:
-    int quantity;
     int duration;
 public:
     //Init
-    Consumable();
+    Consumable(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID, int newDuration) : Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID)
     //Getter
-    int getQuantity();
     int getDuration();
     //Setter
-    void setQuantity(int);
     void setDuration(int);
     //Others
-    void use();
+   // void use();
 };

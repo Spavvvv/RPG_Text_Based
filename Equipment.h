@@ -12,7 +12,7 @@ private:
   void deleteItem();
 public:
   //Init
-	Equipment() : Item(newID) {}
+	Equipment::Equipment(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID);
 
   //Getters
 int getDurability() const;
