@@ -39,6 +39,8 @@ public:
 	bool getAdmin() const;
 	bool getVip() const;
 	int getMoney() const;
+	Item* getEquipmentBox(int index) const;
+	bool getIsEquip(int index) const;
 
 	//Setter
 	void setChoosen(bool);
@@ -46,6 +48,8 @@ public:
 	void setAdmin(bool);
 	void setVip(bool);
 	void setMoney(int);
+	void setEquipmentBox(int, Item*);
+	void setIsEquip(int, bool);
 
 	//Other methods
 	int attack();
@@ -72,4 +76,5 @@ public:
 
 	void adminPanel();
 
+	virtual ~Player() = default;
 };

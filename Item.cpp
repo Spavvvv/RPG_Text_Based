@@ -2,6 +2,8 @@
 #include<iostream>
 #include<string>
 
+#include <fstream>
+
 	//Init
 	Item::Item(){
 		this->name = "";
@@ -14,7 +16,7 @@
 		this->critical_percent = 0;
 		id = 0;
 	}
-	Item::Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID){
+	Item::Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, std::string description, int newID){
 		this->name = newName;
 		this->type = newType;
 		this->level = newLevel;
@@ -22,7 +24,7 @@
 		this->health = newHealth;
 		this->Attack = newAttack;
 		this->defend = newDefend;
-		this->critical = newCritical_percent;
+		this->critical_percent = newCritical_percent;
 		this->id = newID;
 	}
 	Item::~Item() {}
@@ -50,7 +52,7 @@
 		return defend;
 	}
 	int Item::getCritical_percent() const {
-		return critical;
+		return critical_percent;
 	}
 	std::string Item::getDescription() const {
 		return description;
@@ -82,7 +84,7 @@
 		this->defend = newDefend;
 	}
 	void Item::setCritical_percent(int newCritical_percent) {
-		this->critical = newCritical_percent;
+		this->critical_percent = newCritical_percent;
 	}
 	void Item::setDescription(std::string newDescription) {
 		this->description = newDescription;
@@ -94,4 +96,28 @@
 	//Other methods
 	void Item::deleteItem() {
 		delete this;
+	}
+
+
+	// Function to load item from a file
+	Item* Item::loadFromFile(const std::string& filename) {
+		std::ifstream file(filename);
+		if (file.is_open()) {
+			std::string n, t, desc;
+			int lvl, m, h, a, d, cp, i;
+
+			std::getline(file, n);
+			std::getline(file, t);
+			file >> lvl >> m >> h >> a >> d >> cp;
+			file.ignore(); // Ignore the newline character after cp
+			std::getline(file, desc);
+			file >> i;
+
+			file.close();
+			return &Item(n, t, lvl, m, h, a, d, cp, desc, i);
+		}
+		else {
+			std::cerr << "Unable to open file" << std::endl;
+			return &Item("", "", 0, 0, 0, 0, 0, 0, "", 0); // Return a default item on failure
+		}
 	}

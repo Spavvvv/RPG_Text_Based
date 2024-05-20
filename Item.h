@@ -12,7 +12,7 @@ protected:
 	int health;
 	int Attack;
 	int defend;
-	int crititcal_percent;
+	int critical_percent;
 	std::string description;
 
 	// Id for spawn easily, the CONSUMABLE ID will be even number
@@ -22,7 +22,7 @@ protected:
 public:
 	//Init
 	Item();
-	Item(std::string, std::string, int, int, int, int, int, int, int, std::string);
+	Item(std::string, std::string, int, int, int, int, int, int, std::string, int);
 	~Item();
 
 	//Getters
@@ -52,8 +52,6 @@ public:
 	//Other methods
 	void deleteItem();
 
-
-	//
-	virtual ~Item() = default''
+	virtual ~Item() = default;
 };
 

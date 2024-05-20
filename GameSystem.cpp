@@ -111,22 +111,57 @@ bool GameSystem::saveGame() {
 	else {
 		//save some basic informations
 		fileSave << player->getName() << '\n';
-		fileSave << player->getHealth();
-		fileSave << player->getAttack();
-		fileSave << player->getDefend();
-		fileSave << player->getLevel();
-		fileSave << player->getExperience();
-		fileSave << player->getCritical();
+		fileSave << player->getHealth() << " ";
+		fileSave << player->getMaxHealth() << " ";
+		fileSave << player->getAttack() << " ";
+		fileSave << player->getDefend() << " ";
+		fileSave << player->getLevel() << " ";
+		fileSave << player->getExperience() << " ";
+		fileSave << player->getCritical() << " ";
 		
 		//special information
-		fileSave << player->getChoosen();
-		fileSave << player->getJew();
-		fileSave << player->getVip();
+		fileSave << player->getChoosen() << " ";
+		fileSave << player->getJew() << " ";
+		fileSave << player->getVip() << " ";
 		fileSave << player->getAdmin() << '\n';
 
 		//money, yeah, actually, because it's money so.. y'all know, it should have a separate line.. 
 		// idk but maybe it'll give me some lucky like.. tomorrow, i may pick up some of them.
 		fileSave << player->getMoney();
+
+		//save the equipment and the plag that mark the equipment
+		for (int i = 0; i < 4; i++) {
+			fileSave << player->getEquipmentBox(i)->getName() << " ";
+			fileSave << player->getEquipmentBox(i)->getType() << " ";
+			fileSave << player->getEquipmentBox(i)->getLevel() << " ";
+			fileSave << player->getEquipmentBox(i)->getMoney() << " ";
+			fileSave << player->getEquipmentBox(i)->getHealth() << " ";
+			fileSave << player->getEquipmentBox(i)->getAttack() << " ";
+			fileSave << player->getEquipmentBox(i)->getDefend() << " ";
+			fileSave << player->getEquipmentBox(i)->getCritical_percent() << " ";
+			fileSave << player->getEquipmentBox(i)->getDescription() << " ";
+			fileSave << player->getEquipmentBox(i)->getID() << " ";
+			fileSave << dynamic_cast<Equipment*>(player->getEquipmentBox(i))->getDurability() << " ";
+			fileSave << '\n';
+		}
+		for (int i = 4; i < 6; i++) {
+			fileSave << player->getEquipmentBox(i)->getName() << " ";
+			fileSave << player->getEquipmentBox(i)->getType() << " ";
+			fileSave << player->getEquipmentBox(i)->getLevel() << " ";
+			fileSave << player->getEquipmentBox(i)->getMoney() << " ";
+			fileSave << player->getEquipmentBox(i)->getHealth() << " ";
+			fileSave << player->getEquipmentBox(i)->getAttack() << " ";
+			fileSave << player->getEquipmentBox(i)->getDefend() << " ";
+			fileSave << player->getEquipmentBox(i)->getCritical_percent() << " ";
+			fileSave << player->getEquipmentBox(i)->getDescription() << " ";
+			fileSave << player->getEquipmentBox(i)->getID() << " ";
+			fileSave << dynamic_cast<Consumable*>(player->getEquipmentBox(i))->getDuration() << " ";
+			fileSave << '\n';
+		}
+
+		for (int i = 0; i < 6; i++) {
+			fileSave << player->getIsEquip(i) << " ";
+		}
 
 		//save the dungeon level 
 		fileSave << Dungeon_level;
@@ -160,46 +195,75 @@ bool GameSystem::loadGame() {
 
 		//set other information
 		getline(loadFile, line);
-		for (int index = 0; index < line.size(); index++) {
-			switch (index)
-			{
-			case 1:
-				player->setHealth(line[index] - '0');
-				break;
-			case 2:
-				player->setAttack(line[index] - '0');
-				break;
-			case 3:
-				player->setDefend(line[index] - '0');
-				break;
-			case 4:
-				player->setLevel(line[index] - '0');
-				break;
-			case 5:
-				player->setExperience(line[index] - '0');
-				break;
-			case 6:
-				player->setCritical(line[index] - '0');
-				break;
-			case 7:
-				player->setChoosen(line[index] - '0');
-				break;
-			case 8:
-				player->setJew(line[index] - '0');
-				break;
-			case 9:
-				player->setVip(line[index] - '0');
-				break;
-			case 10:
-				player->setAdmin(line[index] - '0');
-				break;
-			case 11:
-				player->setMoney(line[index] - '0');
-				break;
-			default:
-				break;
+		int count = 0;
+		std::string temp = "";
+		for (int i = 0; i < line.size(); i++) {
+			if (line[i] != ' ') {
+				temp += line[i];
+			}
+			else {
+				switch (count)
+				{
+				case 0:
+					player->setHealth(stoi(line));
+					break;
+				case 1:
+					player->setMaxHealth(stoi(line));
+					break;
+				case 2:
+					player->setAttack(stoi(line));
+					break;
+				case 3:
+					player->setDefend(stoi(line));
+					break;
+				case 4:
+					player->setLevel(stoi(line));
+					break;
+				case 5:
+					player->setCritical(stoi(line));
+					break;
+				case 6:
+					player->setChoosen(stoi(line));
+					break;
+				case 7:
+					player->setJew(stoi(line));
+					break;
+				case 8:
+					player->setVip(stoi(line));
+					break;
+				case 9:
+					player->setAdmin(stoi(line));
+					break;
+				default:
+					break;
+				}
+				line = "";
+				count++;
 			}
 		}
+		//set the money
+		getline(loadFile, line);
+		player->setMoney(stoi(line));
+
+
+		//set the equipment box and the flag
+		for (int c = 0; c < 4; c++) {
+			std::string n, t, desc;
+			int lvl, m, h, a, d, cp, i, du;
+
+			std::getline(loadFile, n);
+			std::getline(loadFile, t);
+			loadFile >> lvl >> m >> h >> a >> d >> cp;
+			loadFile.ignore(); // Ignore the newline character after cp
+			std::getline(loadFile, desc);
+			loadFile >> i;
+			loadFile >> du;
+			
+			Consumable* consumable = new Consumable(n, t, lvl, m, h, a, d, cp, desc, i, du);
+
+			player->setEquipmentBox(i, consumable);
+		}
+
 
 		//--------------------------------------------------------------------
 		
@@ -351,8 +415,8 @@ void GameSystem::fighting_Process() {
 					monster[0]->setHealth(monster[0]->getHealth() - 0);
 				}
 
-				//check if the player is using the consumable items
-				
+				//minus the duration if the player is using consumable item
+				player->expire();
 
 
 				//validate if the monster still alive

@@ -68,6 +68,13 @@ int Player::getCritical() const{
 	return critical_percent + additionalCrit;
 }
 
+Item* Player::getEquipmentBox(int index) const {
+	return Box[index];
+}
+bool Player::getIsEquip(int index) const {
+	return isEquip[index];
+}
+
 //setter
 void Player::setChoosen(bool isChoosen_) {
 	isChoosenOne = isChoosen_;
@@ -84,7 +91,22 @@ void Player::setVip(bool isVip_) {
 void Player::setMoney(int money_) {
 	money = money_;
 }
-
+void Player::setEquipmentBox(int index,Item* item) {
+	if (index >= 0 && index < 6) {
+		Box[index] = item;
+	}
+	else {
+		std::cout << "? \n";
+	}
+}
+void Player::setIsEquip(int index, bool variable) {
+	if (index >= 0 && index < 6) {
+		isEquip[index] = variable;
+	}
+	else {
+		std::cout << "? ?\n";
+	}
+}
 //other methods
 int Player::attack() {
 
@@ -228,4 +250,5 @@ void Player::expire() {
 		}
 		consumable->setDuration(consumable->getDuration() - 1);
 	}
+	
 }
