@@ -52,24 +52,8 @@ public:
 	//Other methods
 	void deleteItem();
 
-	//Special operator in the item class, idk if we gonna use it or not..
-	Item& operator=(const Item& item) {
-		if (this == &item) {
-			return *this;
-		}
-		else {
-			name = item.name;
-			type = item.type;
-			level = item.level;
-			money = item.money;
-			health = item.health;
-			Attack = item.Attack;
-			defend = item.defend;
-			crititcal_percent = item.crititcal_percent;
-			description = item.description;
-			id = item.id;
-			return *this;
-		}
-	}
+
+	//
+	virtual ~Item() = default''
 };
 

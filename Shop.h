@@ -48,6 +48,7 @@ public:
 
 	static bool Enhance();
 	void menuShop();
+
 	void Shopping(Player* player);
 
 	//For those who paid for the game, thanks

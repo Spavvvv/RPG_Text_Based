@@ -22,28 +22,16 @@ private:
 	std::vector<Item*> Bag;
 
 	//Place that store the item player had equipped
-	std::vector<Item*> Box;
+	Item* Box[6];
+	bool isEquip[6];
 
 	//money
 	int money;
 
-	//properties for detecting if player has equip items or not
-	bool hasWeapon;	
-	bool hasArmor;
-	bool hasHelmet;
-	bool hasRing;
-
-	//properties for dectecting if player is using consumable or not
-	bool isUsingHealing;
-	bool isUsingBoosting;
-
-	//properties that counting the effect of the consumable items
-	//int healingCount;
 
 public:
 	//Init
-	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip, int money, bool hasWeapon, bool hasArmor, bool hasHelmet, bool hasRing, bool isUsingHealing, bool isUsingBoosting)
-		: Character(), isChoosenOne(false), isJew(false), isAdmin(false) , isVip(false), money(0), hasWeapon(false), hasArmor(false), hasHelmet(false), hasRing(false), isUsingHealing(false), isUsingBoosting(false) {};
+	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip, int money) {}
 
 	//Getter
 	bool getChoosen() const;
@@ -78,7 +66,7 @@ public:
 	//methods for consumable items
 	void useItem(int index);
 
-	void Expire();
+	void expire();
 
 	bool run(int monsterLevel);
 

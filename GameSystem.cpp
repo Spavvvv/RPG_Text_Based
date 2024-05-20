@@ -351,6 +351,10 @@ void GameSystem::fighting_Process() {
 					monster[0]->setHealth(monster[0]->getHealth() - 0);
 				}
 
+				//check if the player is using the consumable items
+				
+
+
 				//validate if the monster still alive
 				if (monster[0]->getHealth() > 0) {
 					if (monster[0]->getAttack() - player->getDefend() > 0) {

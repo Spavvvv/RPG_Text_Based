@@ -6,6 +6,19 @@
 
 #include "GameSystem.h"
 
+#include "Consumable.h"
+
+//Init
+Player::Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip, int money)
+	: Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false), money(0) {
+
+	for (int i = 0; i < 6; i++) {
+		Box[i] = nullptr;
+		isEquip[i] = false;
+	}
+
+}
+
 //getter
 bool Player::getChoosen() const {
 	return isChoosenOne;
@@ -25,7 +38,7 @@ int Player::getMoney() const {
 
 int Player::getHealth() const{
 	int additionalHealth = 0;
-	for (int i = 0; i < Box.size(); i++) {
+	for (int i = 0; i < 6; i++) {
 		additionalHealth += Box[i]->getHealth();
 	}
 	return health + additionalHealth;
@@ -33,7 +46,7 @@ int Player::getHealth() const{
 
 int Player::getAttack() const{
 	int additionalAttack = 0;
-	for (int i = 0; i < Box.size(); i++) {
+	for (int i = 0; i < 6; i++) {
 		additionalAttack += Box[i]->getAttack();
 	}
 	return Attack + additionalAttack;
@@ -41,7 +54,7 @@ int Player::getAttack() const{
 
 int Player::getDefend() const{
 	int additionalDefend = 0;
-	for (int i = 0; i < Box.size(); i++) {
+	for (int i = 0; i < 6; i++) {
 		additionalDefend += Box[i]->getDefend();
 	}
 	return defend + additionalDefend;
@@ -49,7 +62,7 @@ int Player::getDefend() const{
 
 int Player::getCritical() const{
 	int additionalCrit = 0;
-	for (int i = 0; i < Box.size(); i++) {
+	for (int i = 0; i < 6;  i++) {
 		additionalCrit += Box[i]->getCritical_percent();
 	}
 	return critical_percent + additionalCrit;
@@ -73,7 +86,6 @@ void Player::setMoney(int money_) {
 }
 
 //other methods
-
 int Player::attack() {
 
 	//random critical change of player
@@ -92,7 +104,7 @@ int Player::attack() {
 	}
 	
 	int additionalAtk = 0;
-	for (int i = 0; i < Box.size(); i++) {
+	for (int i = 0; i < 6; i++) {
 		additionalAtk += Box[i]->getCritical_percent();
 	}
 	return dmg + additionalAtk;
@@ -137,44 +149,46 @@ bool Player::run(int monsterLevel) {
 void Player::Equip(int index) {
 	//check if the new equipment item type is wearing or not 
 	if (Bag[index]->getType() == "Weapon") {
-		if (hasWeapon == true) {
+		if (isEquip[0] == true) {
 			unEquip("Weapon");
 		}
+		Box[0] = Bag[index];
+		Bag[index] = nullptr;
 	}
 	else if (Bag[index]->getType() == "Armor") {
-		if (hasArmor == true) {
+		if (isEquip[1] == true) {
 			unEquip("Armor");
 		}
+		Box[1] = Bag[index];
+		Bag[index] = nullptr;
 	}
 	else if (Bag[index]->getType() == "Helmet") {
-		if (hasHelmet == true) {
+		if (isEquip[2] == true) {
 			unEquip("Helmet");
 		}
+		Box[2] = Bag[index];
+		Bag[index] = nullptr;
 	}
 	else {
-		if (hasRing == true) {
+		if (isEquip[3] == true) {
 			unEquip("Ring");
 		}
+		Box[3] = Bag[index];
+		Bag[index] = nullptr;
 	}
 
-	//Eqiup the item
-	Box.push_back(Bag[index]);
-
-
 	//delete the item out of the bag
-	delete Bag[index];
+	//delete Bag[index];
 	Bag.erase(Bag.begin() + index);
 }
 
 void Player::unEquip(std::string type) {
-	for (int i = 0; i < Box.size(); i++) {
+	for (int i = 0; i < 4; i++) {
 		if (Box[i]->getType() == type) {
 			Bag.push_back(Box[i]);
 
 			//delete the item out of the equipment box
 			delete Box[i];
-			Box.erase(Box.begin() + i);
-
 			break;
 		}
 	}
@@ -184,15 +198,34 @@ void Player::unEquip(std::string type) {
 //methods for consumable items
 void Player::useItem(int index) {
 	if (Bag[index]->getType() == "Healing") {
-		if (isUsingHealing == true) {
+		if (health + Bag[index]->getHealth() < getMaxHealth()) {
+			health += Bag[index]->getHealth();
+		}
+		else {
+			health = getMaxHealth();
+		}
+
+		delete Bag[index];
+		Bag.erase(Bag.begin() + index);
+	}
+
+	if (Bag[index]->getType() == "Boosting") {
+		if (isEquip[5] == true) {
 			std::cout << "U can use that more than one time !!! \n";
 		}
-	}
-	else if (Bag[index]->getType() == "Boosting") {
-		if (isUsingBoosting == true) {
-			std::cout << "U can use that more than one time !!! \n";
+		else {
+			Box[5] = Bag[index];
+			Bag[index] = nullptr;
 		}
 	}
-	
-	Box.push_back(Bag[index]);
+}
+
+void Player::expire() {
+	if (isEquip[5] == true) {
+		Consumable* consumable = dynamic_cast<Consumable*>(Box[5]);
+		if (consumable->getDuration() == 0) {
+			Box[5] = nullptr;
+		}
+		consumable->setDuration(consumable->getDuration() - 1);
+	}
 }
