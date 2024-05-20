@@ -57,6 +57,6 @@ public:
 
 
 	//
-	virtual ~Item() = default''
+	virtual ~Item() = default;
 };
 
