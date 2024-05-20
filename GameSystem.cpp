@@ -410,8 +410,9 @@ void GameSystem::fighting_Process() {
 void GameSystem::option() {
 	std::cout << "1. Go to next level" << '\n';
 	std::cout << "2. Go Shopping..." << '\n';
-	std::cout << "3. Return to the main menu" << '\n';
-	std::cout << "4. Return to the Desktop screen.." << '\n';
+	std::cout << "3. Open bag" << '\n';
+	std::cout << "4. Return to the main menu" << '\n';
+	std::cout << "5. Return to the Desktop screen.." << '\n';
 
 	std::string choice;
 	
@@ -424,10 +425,14 @@ void GameSystem::option() {
 			play();
 		}
 		else if (Ichoice == 2) {
-			Shop->Shopping(player);
+			int item, amount;
+			Shop->Shopping(&item, &amount);
 			option();
 		}
 		else if (Ichoice == 3) {
+			player->openBag();
+		}
+		else if (Ichoice == 4) {
 			saveGame();
 			mainMenu();
 		}
