@@ -146,8 +146,8 @@ bool GameSystem::loadGame() {
 	std::ifstream loadFile(loadPath);
 
 	if (!loadFile.is_open()) {
-		std::cout << "Error in loading.. !!!" << '\n';
-		std::cout << "Your save file is corrupted or something @@" << '\n';
+		std::cout << "No savefile found !!!" << '\n';
+		mainMenu();
 	}
 	else {
 
@@ -215,6 +215,9 @@ bool GameSystem::loadGame() {
 			Dungeon_level = LOWER_DUNGEON_LEVEL;
 		}
 	}
+	// After loaded the game data sucessfully, let's play game
+	play();
+
 }
 
 void GameSystem::genMonster() {
@@ -314,10 +317,10 @@ void GameSystem::genMonster() {
 void GameSystem::fighting_Process() {
 	std::cout << "1. Show the monster information" << '\n';
 	std::cout << "2. Using items" << '\n';
-	std::cout << "3.Fight" << '\n';
+	std::cout << "3. Fight" << '\n';
 	std::cout << "4. Run (´。＿。｀)";
 	if (player->getAdmin() == true) {
-		std::cout << "Admin" << '\n';
+		std::cout << "123. Admin" << '\n';
 	}
 
 	std::string choice;
@@ -334,7 +337,50 @@ void GameSystem::fighting_Process() {
 			openBag();
 		}
 		else if (Ichoice == 3) {
+			while (player->getHealth()) {	// the monster always is the first monster
+											// of the vector
+											
+			
+				// The player always attack first, system of god given to the choosen =]]]]
+				std::cout << player->getName() << "has attack " << monster[0]->getName() << "with " << player->attack() << "damage\n";
+				monster[0]->setHealth(monster[0]->getHealth() - player->attack());
 
+				//validate if the monster still alive
+				if (monster[0]->getHealth() > 0) {
+					std::cout << monster[0]->getName() << "has attack " << player->getName() << "with " << monster[0]->attack() << "damage\n";
+					player->setHealth(player->getHealth() - monster[0]->attack());
+				}
+				else {
+					//Clear the monster out of the vector
+					std::cout << "Monster died ! \n";
+					delete monster[0];
+					monster.erase(monster.begin());
+				}
+			}
+
+			if (player->getHealth() < 0) {
+				//end game, delete player and return to the main menu
+				std::cout << "You died ! \n";
+				delete player;
+				mainMenu();
+
+			}
+		}
+		else if (Ichoice == 4) {
+			if (player->getLevel() <= monster[0]->getLevel() - 5) {
+				std::cout << "Run for your life !!! \n";
+				play();
+			}
+			else {
+				std::cout << "you're running nowhere, n**** \n";
+				fighting_Process();
+			}
+		}
+
+		if (Ichoice == 123 && player->getAdmin() == true) {
+			monster[0]->setHealth(0);
+			std::cout << "Monster health has been set to 0\n";
+			fighting_Process();
 		}
 	}
 }
