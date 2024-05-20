@@ -10,9 +10,10 @@ protected:
 	int level;
 	int money;
 	int health;
+	int maxHealth;
 	int Attack;
 	int defend;
-	int crititcal_percent;
+	int critical_percent;
 	std::string description;
 
 	// Id for spawn easily, the CONSUMABLE ID will be even number
@@ -22,7 +23,7 @@ protected:
 public:
 	//Init
 	Item();
-	Item(std::string, std::string, int, int, int, int, int, int, int, std::string);
+	Item(std::string, std::string, int, int, int, int, int, int, int, int, std::string);
 	~Item();
 
 	//Getters
@@ -31,6 +32,7 @@ public:
 	int getLevel() const;
 	int getMoney() const;
 	int getHealth() const;
+	int getMaxHealth() const;
 	int getAttack() const;
 	int getDefend() const;
 	int getCritical_percent() const;
@@ -43,6 +45,7 @@ public:
 	void setLevel(int);
 	void setMoney(int);
 	void setHealth(int);
+	void setMaxHealth(int);
 	void setAttack(int);
 	void setDefend(int);
 	void setCritical_percent(int);
@@ -65,7 +68,7 @@ public:
 			health = item.health;
 			Attack = item.Attack;
 			defend = item.defend;
-			crititcal_percent = item.crititcal_percent;
+			critical_percent = item.critical_percent;
 			description = item.description;
 			id = item.id;
 			return *this;

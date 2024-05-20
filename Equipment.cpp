@@ -3,11 +3,7 @@
 #include<iostream>
 #include<string>
 
-Equipment::Equipment(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID, int newDurability, bool newIsWearing) : Item(newName, newType, newLevel, newMoney, newHealth, newAttack, newDefend, newCritical_percent, newID), durability(newDurability), isWearing(newIsWearing) {}
-
-void Equipment::deleteItem() {
-    delete this;
-}
+Equipment::Equipment(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newMaxHealth, int newAttack, int newDefend, int newCritical_percent, int newID, std::string newDescription, int newDurability, bool newIsWearing) : Item(newName, newType, newLevel, newMoney, newHealth, newMaxHealth, newAttack, newDefend, newCritical_percent, newID, newDescription), durability(newDurability), isWearing(newIsWearing) {}
 
   //Getters
 int Equipment::getDurability() const {

@@ -9,10 +9,9 @@ class Equipment: public Item {
 private:
   int durability;
   bool isWearing;
-  void deleteItem();
 public:
   //Init
-	Equipment(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID);
+	Equipment(std::string, std::string, int, int, int, int, int, int, int, int, std::string, int, bool);
 
   //Getters
 	int getDurability() const;
