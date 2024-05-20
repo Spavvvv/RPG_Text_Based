@@ -39,6 +39,7 @@ public:
 	bool getAdmin() const;
 	bool getVip() const;
 	int getMoney() const;
+	std::vector<Item*> getBag() const;
 
 	//Setter
 	void setChoosen(bool);
@@ -46,7 +47,7 @@ public:
 	void setAdmin(bool);
 	void setVip(bool);
 	void setMoney(int);
-
+	void setBag(Item*);
 	//Other methods
 	int attack();
 

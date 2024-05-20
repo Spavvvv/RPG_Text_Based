@@ -29,7 +29,7 @@
 		this->id = newID;
 		this->description = newDescription;
 	}
-	Item::~Item() {}
+	//Item::~Item() {}
 
 	//Getters
 	std::string Item::getName() const {

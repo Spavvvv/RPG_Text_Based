@@ -35,6 +35,9 @@ bool Player::getVip() const {
 int Player::getMoney() const {
 	return money;
 }
+std::vector<Item*> Player::getBag() const {
+	return Bag;
+}
 
 int Player::getHealth() const{
 	int additionalHealth = 0;
@@ -84,7 +87,9 @@ void Player::setVip(bool isVip_) {
 void Player::setMoney(int money_) {
 	money = money_;
 }
-
+void Player::setBag(Item* item) {
+	Bag.push_back(item);
+}
 //other methods
 int Player::attack() {
 
@@ -122,7 +127,11 @@ void Player::openBag() {
 
 	if (option > 0 && option <= Bag.size()) {
 		if (option % 2 == 1) {
-			Equip(option);
+			int equipmentOption;
+			std::cout << "1. Equip" << std::endl << "2. Enhance" << std::endl;
+			std::cin >> equipmentOption;
+			if (equipmentOption == 1) Equip(option);
+			else if (equipmentOption == 2) {} //ENhance function
 		}
 		else {
 			useItem(option);

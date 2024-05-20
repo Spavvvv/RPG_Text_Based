@@ -24,7 +24,7 @@ public:
 	//Init
 	Item();
 	Item(std::string, std::string, int, int, int, int, int, int, int, int, std::string);
-	~Item();
+	//~Item();
 
 	//Getters
 	std::string getName() const;
