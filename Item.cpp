@@ -47,6 +47,9 @@
 	int Item::getHealth() const {
 		return health;
 	}
+	int Item::getMaxHealth() const {
+		return maxHealth;
+	}
 	int Item::getAttack() const {
 		return Attack;
 	}
@@ -78,6 +81,9 @@
 	}
 	void Item::setHealth(int newHealth) {
 		this->health = newHealth;
+	}
+	void Item::setMaxHealth(int newMaxHealth) {
+		this->maxHealth = newMaxHealth;
 	}
 	void Item::setAttack(int newAttack) {
 		this->Attack = newAttack;

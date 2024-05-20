@@ -46,10 +46,6 @@ public:
 	//Buy items
 	void Buy(Player*, int*, int*);
 
-	//void Sell(Player*, int*, int*);
-	//Enhance an equipment
-	static bool Enhance();
-
 	//For those who paid for the game, thanks
 	bool Cheat_Code();
 

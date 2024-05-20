@@ -16,7 +16,7 @@ Shop::Shop() {
     ConsumablesInStock.emplace_back("Defend Potion", "Boosting", 1, 15, 0, 0, 0, 5, 0, 210, "+5 Defend for your next fight", 1);
     ConsumablesInStock.emplace_back("Crit Potion", "Boosting", 1, 15, 0, 0, 0, 0, 4, 220, "+4 Critical Chance for your next fight", 1);
     ConsumablesInStock.emplace_back("Max Health Potion", "Boosting", 1, 15, 0, 25, 0, 0, 0, 230, "+25 Max Health for your next fight", 1);
-    ConsumablesInStock.emplace_back("Enhance Stone", "Enhance", 1, 20, 0, 0, 0, 0, 0, 240, "Boost the chance of successful enhancement", 0);
+    ConsumablesInStock.emplace_back("Enhance Stone", "Enhance", 1, 15, 0, 0, 0, 0, 0, 240, "Boost the chance of successful enhancement", 0);
 }
 
 void Shop::Shopping(int* item, int* amount) {

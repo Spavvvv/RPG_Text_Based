@@ -60,6 +60,10 @@ public:
 	//method for open the bag
 	void openBag();
 
+	void Enhance(int);
+
+	void Sell(int);
+
 	void Equip(int index);
 
 	void unEquip(std::string type);
