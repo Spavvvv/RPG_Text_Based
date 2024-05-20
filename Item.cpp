@@ -3,7 +3,7 @@
 #include<string>
 
 	//Init
-	Item::Item(int newID){
+	Item::Item(){
 		this->name = "";
 		this->type = "";
 		this->level = -1;
@@ -11,8 +11,8 @@
 		this->health = 0;
 		this->Attack = 0;
 		this->defend = 0;
-		this->critical = 0;
-		this->id = newID;
+		this->critical_percent = 0;
+		id = 0;
 	}
 	Item::Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID){
 		this->name = newName;

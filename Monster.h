@@ -31,7 +31,7 @@ private:
 
 public:
 	//Init
-	Undead(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isHoly) : Monster(name, health, Attack, defend, level, experience, critical_percent), isHoly(false) {}
+	Undead(bool isHoly) : Monster(), isHoly(false) {}
 
 
 	//methods
@@ -51,7 +51,7 @@ private:
 
 public:
 	//Init
-	Manh(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isJew) : Monster(name, health, Attack, defend, level, experience, critical_percent), isJew(false) {}
+	Manh(bool isJew) : Monster(), isJew(false) {}
 
 	//methods
 	int attack();
@@ -71,7 +71,7 @@ private:
 
 public:
 	//Init
-	Dragon(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isChoosen) : Monster(name, health, Attack, defend, level, experience, critical_percent), isChoosen(false) {}
+	Dragon(bool isChoosen) : Monster(), isChoosen(false) {}
 
 	//Methods
 	int attack();

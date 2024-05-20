@@ -18,15 +18,24 @@ private:
 	bool isAdmin;
 	bool isVip;
 
-	//User Bag
+	//Bringable bag
 	std::vector<Item*> Bag;
+
+	//Place that store the item player had equipped
+	std::vector<Item*> Box;
 
 	//money
 	int money;
 
+	//properties for detect if player has equip items or not
+	bool hasWeapon;	
+	bool hasArmor;
+	bool hasHelmet;
+	bool hasRing;
 public:
 	//Init
-	Player() : Character() {};
+	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip, int money, bool hasWeapon, bool hasArmor, bool hasHelmet, bool hasRing) 
+		: Character(), isChoosenOne(false), isJew(false), isAdmin(false) , isVip(false), money(0), hasWeapon(false), hasArmor(false), hasHelmet(false), hasRing(false) {};
 
 	//Getter
 	bool getChoosen() const;
@@ -45,20 +54,22 @@ public:
 	//Other methods
 	int attack();
 
+	//method for open the bag
+	void openBag();
+
 	//methods for equipable items
-	static bool Equip();
+	void checkEquip(int index, std::string type);
 
-	static bool unEquip();
+	void Equip(int index);
 
+	void unEquip(std::string type);
 
 	//methods for consumable items
-	static bool useItem();
-
-
+	void useItem();
 
 	bool run(int monsterLevel);
 
-	void run();
+	static bool run();
 
 	void adminPanel();
 

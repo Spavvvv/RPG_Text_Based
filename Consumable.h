@@ -10,7 +10,7 @@ private:
     int duration;
 public:
     //Init
-    Consumable(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID, int newDuration) : Item(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, int newID)
+    Consumable(int duration) : Item(), duration(0) {}
     //Getter
     int getDuration();
     //Setter

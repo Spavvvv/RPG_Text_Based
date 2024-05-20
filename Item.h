@@ -15,13 +15,14 @@ protected:
 	int crititcal_percent;
 	std::string description;
 
-	//Id for spawn easily
+	// Id for spawn easily, the CONSUMABLE ID will be even number
+	// The Equipment ID will be odd number
 	int id;
 
 public:
 	//Init
-	Item(int newID);
-	Item(std::string, std::string, int, int, int, int, int, int, int, string);
+	Item();
+	Item(std::string, std::string, int, int, int, int, int, int, int, std::string);
 	~Item();
 
 	//Getters
@@ -50,5 +51,25 @@ public:
 
 	//Other methods
 	void deleteItem();
+
+	//Special operator in the item class
+	Item& operator=(const Item& item) {
+		if (this == &item) {
+			return *this;
+		}
+		else {
+			name = item.name;
+			type = item.type;
+			level = item.level;
+			money = item.money;
+			health = item.health;
+			Attack = item.Attack;
+			defend = item.defend;
+			crititcal_percent = item.crititcal_percent;
+			description = item.description;
+			id = item.id;
+			return *this;
+		}
+	}
 };
 

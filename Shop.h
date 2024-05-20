@@ -4,6 +4,11 @@
 
 #include "Item.h"
 
+#include "Equipment.h"
+
+#include "Consumable.h"
+
+#include "Player.h"
 
 enum class WeaponType {
 	Sword,
@@ -30,7 +35,7 @@ private:
 //	int money;
 public:
 	//Init
-	menuShop();
+	Shop();
 
 	//getter
 
@@ -42,6 +47,8 @@ public:
 	bool Sell();
 
 	static bool Enhance();
+
+	void Shopping(Player* player);
 
 	//For those who paid for the game, thanks
 	bool Cheat_Code();

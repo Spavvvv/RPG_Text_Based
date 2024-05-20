@@ -20,6 +20,8 @@ private:
 
 	int Dungeon_level;
 
+	Shop* Shop;
+
 public:
 	void mainMenu();
 

@@ -316,7 +316,7 @@ void GameSystem::genMonster() {
 //idk, i'll add that later
 void GameSystem::fighting_Process() {
 	std::cout << "1. Show the monster information" << '\n';
-	std::cout << "2. Using items" << '\n';
+	std::cout << "2. Open Bag" << '\n';
 	std::cout << "3. Fight" << '\n';
 	std::cout << "4. Run (´。＿。｀)";
 	if (player->getAdmin() == true) {
@@ -337,11 +337,11 @@ void GameSystem::fighting_Process() {
 			openBag();
 		}
 		else if (Ichoice == 3) {
-			while (player->getHealth()) {	// the monster always is the first monster
+			while (player->getHealth() > 0) {	// the monster always is the first monster
 											// of the vector
 											
 			
-				// The player always attack first, system of god given to the choosen =]]]]
+				// The player always attack first, the system of god given to the choosen =]]]]
 				std::cout << player->getName() << "has attack " << monster[0]->getName() << "with " << player->attack() << "damage\n";
 				monster[0]->setHealth(monster[0]->getHealth() - player->attack());
 
@@ -367,16 +367,20 @@ void GameSystem::fighting_Process() {
 			}
 		}
 		else if (Ichoice == 4) {
-			if (player->getLevel() <= monster[0]->getLevel() - 5) {
+			//If player has enough condition for running, then let him run ~~"
+			if (player->run(monster[0]->getLevel()) == true) {
 				std::cout << "Run for your life !!! \n";
 				play();
 			}
+
+			// If he's not =]]]]
 			else {
 				std::cout << "you're running nowhere, n**** \n";
 				fighting_Process();
 			}
 		}
 
+		//hmm
 		if (Ichoice == 123 && player->getAdmin() == true) {
 			monster[0]->setHealth(0);
 			std::cout << "Monster health has been set to 0\n";
@@ -403,8 +407,7 @@ void GameSystem::option() {
 			play();
 		}
 		else if (Ichoice == 2) {
-			Shop* shopping_place = new Shop();
-			shopping_place->menuShop();		//menu of the shop, rn, 8_5_24, it's not available yet, but i think soon.
+			Shop->Shopping(player);
 			option();
 		}
 		else if (Ichoice == 3) {

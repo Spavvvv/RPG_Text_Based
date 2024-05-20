@@ -2,12 +2,9 @@
 
 #include <random>
 
+#include "iostream"
 
-
-Player::Player() : Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false), money(0) {
-
-}
-
+#include "GameSystem.h"
 
 //getter
 bool Player::getChoosen() const {
@@ -65,14 +62,73 @@ int Player::attack() {
 	return dmg;
 }
 
-bool Player::run(int monsterPlayer) {
+//method for open the bag
+void Player::openBag() {
+	for (int i = 0; i < Bag.size(); i++) {
+		std::cout << i + 1 << ". " << Bag[i]->getName() << '\n';
+	}
+
+	int option;
+	std::cout << "Your Option: ";
+	std::cin >> option;
+
+	if (option > 0 && option <= Bag.size()) {
+		if (option % 2 == 1) {
+			Equip(option);
+		}
+	}
+	
+}
+
+bool Player::run(int monsterLevel) {
 
 	//Basic running way of user, haven't calcualte the Items and the Vip properties yet
-	if (level - monsterPlayer >= 5) {
+	if (level - monsterLevel >= 5) {
 		return true;
 	}
 	else {
 		return false;
 	}
+
 	return false;
+}
+
+//methods for equipable items
+void Player::checkEquip(int index, std::string type) {
+
+}
+
+void Player::Equip(int index) {
+	if (Bag[index]->getType() == "Weapon") {
+		if (hasWeapon == true) {
+			unEquip("Weapon");
+		}
+	
+		Box.push_back(Bag[index]);
+
+
+		//delete the item out of the bag
+		delete Bag[index];
+		Bag.erase(Bag.begin() + index);
+	}
+}
+
+void Player::unEquip(std::string type) {
+	for (int i = 0; i < Box.size(); i++) {
+		if (Box[i]->getType() == type) {
+			Bag.push_back(Box[i]);
+
+			//delete the item out of the equipment box
+			delete Box[i];
+			Box.erase(Box.begin() + i);
+
+			break;
+		}
+	}
+}
+
+
+//methods for consumable items
+void Player::useItem() {
+
 }
