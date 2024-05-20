@@ -47,6 +47,7 @@ public:
 	bool Sell();
 
 	static bool Enhance();
+
 	void Shopping(Player* player);
 
 	//For those who paid for the game, thanks
