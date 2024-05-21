@@ -52,6 +52,7 @@ public:
 	Item* getEquipmentBox(int index) const;
 	bool getIsEquip(int index) const;
 	std::vector<Item*> getBag() const;
+	Item* getBag(int index) const;
 
 	//Setter
 	void setChoosen(bool);
@@ -61,7 +62,7 @@ public:
 	void setMoney(int);
 	void setEquipmentBox(int, Item*);
 	void setIsEquip(int, bool);
-
+	void setBag(int index, Item* item);
 
 	void setBag(Item*);
 	//Other methods

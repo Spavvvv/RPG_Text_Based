@@ -38,6 +38,7 @@ void GameSystem::mainMenu() {
 			loadGame();
 		}
 		else if (input == "3") {
+			std::cout << "first version of the game, but we're not sure if the second version is exist or not... \n";
 			author();
 		}
 		else if (input == "4") {
@@ -171,6 +172,8 @@ bool GameSystem::saveGame() {
 				fileSave << '\n';
 			}
 		}
+		//---------------------SAVE THE BAG @@--------------------------------
+		
 
 		//close the file
 		fileSave.close();
@@ -531,7 +534,7 @@ void GameSystem::option() {
 	std::string choice;
 	
 	std::cin >> choice;
-	if (choice.length() == 1 && stoi(choice) > 0 && stoi(choice) < 5) {
+	if (choice.length() == 1 && stoi(choice) > 0 && stoi(choice) <= 5) {
 
 		int Ichoice = stoi(choice);
 		if (Ichoice == 1) {
@@ -557,7 +560,10 @@ void GameSystem::option() {
 			exit();
 		}
 	}
-
+	else {
+		std::cout << "?, are you messing with me ? \n";
+		option();
+	}
 	//clear the std::cin and the cin buffer if the player doing some tricks to destroy the program
 	//fk tester, btw
 	clearCin();
@@ -598,7 +604,7 @@ void GameSystem::play() {
 
 void GameSystem::exit() {
 	std::cout << "Have a good day !" << '\n';
-	std::cout << "Well, forgot to tell you that this game don't have auto save =]]]]]" << 'n';
+	std::cout << "Well, forgot to tell you that this game don't have auto save =]]]]] \n";
 	std::exit(0);
 }
 
@@ -608,7 +614,9 @@ void GameSystem::clearCin() {
 }
 
 void GameSystem::author() {
-
+	std::cout << "1. Dat dep trai vo dich vu tru khong ai sanh bang ! \n";
+	std::cout << "2. Lt.Hoag, ke huy diet moi tro rpg-text-based ! \n";
+	std::cout << "3. Duy \n";
 }
 
 GameSystem::~GameSystem() {

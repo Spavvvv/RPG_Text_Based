@@ -85,6 +85,10 @@ Item* Player::getEquipmentBox(int index) const {
 bool Player::getIsEquip(int index) const {
 	return isEquip[index];
 }
+Item* Player::getBag(int index) const {
+	return Bag[index];
+}
+
 
 //setter
 void Player::setChoosen(bool isChoosen_) {
@@ -104,6 +108,9 @@ void Player::setMoney(int money_) {
 }
 void Player::setBag(Item* item) {
 	Bag.push_back(item);
+}
+void Player::setBag(int index, Item* item) {
+	Bag[index] = item;
 }
 
 void Player::setEquipmentBox(int index,Item* item) {
