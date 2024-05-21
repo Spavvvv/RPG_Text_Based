@@ -1,9 +1,9 @@
 #include "Monster.h"
-void Undead::display(){
-		std::cout << "Name:  "<< getName() << "\n";
-		std::cout << "Health: " << getHealth() << "\n";
-		std::cout << "Attack: " << getAttack() << "\n";
-		std::cout << "--------------------------\n";
+void Undead::display() {
+	std::cout << "Name:  "<< getName() << "\n";
+	std::cout << "Health: " << getHealth() << "\n";
+	std::cout << "Attack: " << getAttack() << "\n";
+	std::cout << "--------------------------\n";
 	}
 void Dragon::display() {
 	std::cout << "Name:  " << getName() << "\n";
@@ -13,11 +13,11 @@ void Dragon::display() {
 }
 
 void Manh::display(){
-		std::cout << "Name:  "<< getName() << "\n";
-		std::cout << "Health: " << getHealth() << "\n";
-		std::cout << "Attack: " << getAttack() << "\n";
-		std::cout << "--------------------------\n";
-	}
+	std::cout << "Name:  "<< getName() << "\n";
+	std::cout << "Health: " << getHealth() << "\n";
+	std::cout << "Attack: " << getAttack() << "\n";
+	std::cout << "--------------------------\n";
+}
 void displayInfoMonster(Basic_monster& type) {
 
 	/*for (const auto& monster:type) {
@@ -49,7 +49,7 @@ bool Undead::curse() {
 	return false;
 }
 bool Dragon::hailH() {
-	return false;
+	
 }
 bool Manh::loser() {
 	return false;
