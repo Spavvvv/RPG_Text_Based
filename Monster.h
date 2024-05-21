@@ -17,7 +17,7 @@ public:
 
 	Monster() : Character() {}
 
-	Monster(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent) : Character(name, health, Attack, defend, level, experience, critical_percent) {}
+	Monster(std::string name, int health, int maxHealth, int Attack, int defend, int level, int experience, int critical_percent, int money) : Character(name, health, maxHealth, Attack, defend, level, experience, critical_percent, money) {}
 
 	//methods
 	virtual int attack() {};
@@ -34,7 +34,7 @@ public:
 	//Init
 	Undead(bool isHoly) : Monster(), isHoly(false) {}
 
-	Undead(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isHoly) : Monster(name, health, Attack, defend, level, experience, critical_percent), isHoly(false) {};
+	Undead(std::string name, int health, int maxHealth, int Attack, int defend, int level, int experience, int critical_percent, int money, bool isHoly) : Monster(name, health, maxHealth, Attack, defend, level, experience, critical_percent, money), isHoly(false) {};
 
 
 	//methods
@@ -54,7 +54,7 @@ public:
 	//Init
 	Dragon(bool isJew) :Monster(), isJew(false) {}
 
-	Dragon(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isJew) : Monster(name, health, Attack, defend, level, experience, critical_percent), isJew(false) {}
+	Dragon(std::string name, int health, int maxHealth, int Attack, int defend, int level, int experience, int critical_percent, int money, bool isJew) : Monster(name, health, maxHealth, Attack, defend, level, experience, critical_percent, money), isJew(false) {}
 
 	//methods
 	int attack();
@@ -75,7 +75,7 @@ public:
 	//Init
 	Manh(bool isChoosen) : Monster(), isChoosen(false) {}
 
-	Manh(std::string name, int health, int Attack, int defend, int level, int experience, int critical_percent, bool isChoosen) : Monster(name, health, Attack, defend, level, experience, critical_percent), isChoosen(false) {}
+	Manh(std::string name, int health, int maxHealth, int Attack, int defend, int level, int experience, int critical_percent, int money, bool isChoosen) : Monster(name, health, maxHealth, Attack, defend, level, experience, critical_percent, money), isChoosen(false) {}
 
 	//Methods
 	int attack();

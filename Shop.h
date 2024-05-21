@@ -41,14 +41,10 @@ public:
 
 	//setter
 
-	//other methods
-	void Buy(Player*, int*, int*);
-
-	void Sell(Player*, int*, int*);
-
-	static bool Enhance();
-
-	void Shopping(int*, int*);
+	//Shows all items
+	void shopping(Player*);
+	//Buy items
+	void buy(Player*);
 
 	//For those who paid for the game, thanks
 	bool Cheat_Code();

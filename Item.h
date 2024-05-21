@@ -28,7 +28,6 @@ public:
 
 	Item(std::string, std::string, int, int, int, int, int, int, int, int, std::string);
 
-
 	//Getters
 	std::string getName() const;
 	std::string getType() const;

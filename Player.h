@@ -31,7 +31,8 @@ private:
 
 public:
 	//Init
-	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip, int money) {}
+	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip) 
+		: Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false) {}
 
 	//Getter
 	bool getChoosen() const;
@@ -41,6 +42,7 @@ public:
 	int getMoney() const;
 	Item* getEquipmentBox(int index) const;
 	bool getIsEquip(int index) const;
+	std::vector<Item*> getBag() const;
 
 	//Setter
 	void setChoosen(bool);
@@ -51,6 +53,8 @@ public:
 	void setEquipmentBox(int, Item*);
 	void setIsEquip(int, bool);
 
+
+	void setBag(Item*);
 	//Other methods
 	int attack();
 
@@ -62,6 +66,10 @@ public:
 
 	//method for open the bag
 	void openBag();
+
+	void Enhance(int);
+
+	void Sell(int);
 
 	void Equip(int index);
 
