@@ -6,17 +6,17 @@
 
 
 Shop::Shop() { // Generates all items
-    EquipmentsInStock.emplace_back("Old Sword", "Weapon", 1, 50, 0, 0, 5, 0, 0, 101, "+5 Attack. The most basic weapon for an adventurer, essential for early grind", 100, false);
-    EquipmentsInStock.emplace_back("Old Armor", "Armor", 1, 50, 0, 25, 0, 0, 0, 111, "+25 Max Health. Gives you a tiny bit of HP. Bulk up soldier!", 100, false);
-    EquipmentsInStock.emplace_back("Old Helmet", "Helmet", 1, 50, 0, 0, 0, 5, 0, 121, "+5 Defend. Protects you from incoming damages, withstand more attacks from regular monsters", 100, false);
-    EquipmentsInStock.emplace_back("Old Ring", "Ring", 1, 50, 0, 0, 0, 0, 4, 131, "+4 Crit Chance. Crit Chance! Yay!! 4 percent is surely gonna be huge, right?", 100, false);
-    ConsumablesInStock.emplace_back("Small Health Potion", "Healing", 1, 3, 50, 0, 0, 0, 0, 140, "Heal a small amount of Health", 0);
-    ConsumablesInStock.emplace_back("Large Health Potion", "Healing", 1, 6, 100, 0, 0, 0, 0, 170, "Heal a large amount of Health", 0);
-    ConsumablesInStock.emplace_back("Attack Potion", "Boosting", 1, 15, 0, 0, 5, 0, 0, 200, "+5 Attack for your next fight", 1);
-    ConsumablesInStock.emplace_back("Defend Potion", "Boosting", 1, 15, 0, 0, 0, 5, 0, 210, "+5 Defend for your next fight", 1);
-    ConsumablesInStock.emplace_back("Crit Potion", "Boosting", 1, 15, 0, 0, 0, 0, 4, 220, "+4 Critical Chance for your next fight", 1);
-    ConsumablesInStock.emplace_back("Max Health Potion", "Boosting", 1, 15, 0, 25, 0, 0, 0, 230, "+25 Max Health for your next fight", 1);
-    ConsumablesInStock.emplace_back("Enhance Stone", "Enhance", 1, 15, 0, 0, 0, 0, 0, 240, "Boost the chance of successful enhancement", 0);
+    EquipmentsInStock.emplace_back(new Equipment("Old Sword", "Weapon", 1, 50, 0, 5, 0, 0, "+5 Attack. The most basic weapon for an adventurer, essential for early grind", 101, 100));
+    EquipmentsInStock.emplace_back(new Equipment("Old Armor", "Armor", 1, 50, 25, 0, 0, 0, "+25 Max Health. Gives you a tiny bit of HP. Bulk up soldier!", 111, 100));
+    EquipmentsInStock.emplace_back(new Equipment("Old Helmet", "Helmet", 1, 50, 0, 0, 5, 0, "+5 Defend. Protects you from incoming damages, withstand more attacks from regular monsters", 121, 100));
+    EquipmentsInStock.emplace_back(new Equipment("Old Ring", "Ring", 1, 50, 0, 0, 0, 4, "+4 Crit Chance. Crit Chance! Yay!! 4 percent is surely gonna be huge, right?", 131, 100));
+    ConsumablesInStock.emplace_back(new Consumable("Small Health Potion", "Healing", 1, 3, 50, 0, 0, 0, "Heal a small amount of Health", 140, 0));
+    ConsumablesInStock.emplace_back(new Consumable("Large Health Potion", "Healing", 1, 6, 100, 0, 0, 0, "Heal a large amount of Health", 170, 0));
+    ConsumablesInStock.emplace_back(new Consumable("Attack Potion", "Boosting", 1, 15, 0, 5, 0, 0, "+5 Attack for your next fight", 200, 1));
+    ConsumablesInStock.emplace_back(new Consumable("Defend Potion", "Boosting", 1, 15, 0, 0, 5, 0, "+5 Defend for your next fight", 210, 1));
+    ConsumablesInStock.emplace_back(new Consumable("Crit Potion", "Boosting", 1, 15, 0, 0, 0, 4, "+4 Critical Chance for your next fight", 220, 1));
+    ConsumablesInStock.emplace_back(new Consumable("Health Potion", "Boosting", 1, 15, 25, 0, 0, 0, "+25 Max Health for your next fight", 230, 1));
+    ConsumablesInStock.emplace_back(new Consumable("Enhance Stone", "Enhance", 1, 15, 0, 0, 0, 0, "Boost the chance of successful enhancement", 240, 0));
 }
 
 void Shop::shopping(Player* player) {

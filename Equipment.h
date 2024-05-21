@@ -10,10 +10,9 @@ private:
   int durability;
 public:
   //Init
-	Equipment(std::string, std::string, int, int, int, int, int, int, int, int, std::string, int);
+	Equipment();
 
-	Equipment(std::string, std::string, int, int, int, int, int, int, std::string, int, int)
-		: Item(name, type, level, money, health, Attack, defend, critical_percent, description, id), durability(0) {};
+	Equipment(std::string, std::string, int, int, int, int, int, int, std::string, int, int);
 
   //Getters
 	int getDurability() const;

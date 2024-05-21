@@ -3,9 +3,8 @@
 #include<iostream>
 #include<string>
 
-//Equipment::Equipment(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, std::string newDescription, int newID, int newDurability)
-//    : Item(newName, newType, newLevel, newMoney, newHealth, newAttack, newDefend, newCritical_percent, newDescription, newID), durability(newDurability) {};
-
+Equipment::Equipment(std::string, std::string, int, int, int, int, int, int, std::string, int, int)
+    : Item(name, type, level, money, health, Attack, defend, critical_percent, description, id), durability(0) {};
   //Getters
 int Equipment::getDurability() const {
     return durability;
