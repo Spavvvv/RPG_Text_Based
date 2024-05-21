@@ -213,13 +213,22 @@ void Player::Enhance(int item) {
 	int EnchanceMoney = 20;
 	int stoneItem;
 	int stoneNum = 0;
-	std::cout << "You are enhancing " << Bag[item] << " for " << money << " coins." << std::endl;
-	std::cout << "Chances of success is currently " << chance << "%. Do you want to use Enhance Stone?" << std::endl;
-	std::cout << "1. Yes" << std::endl << "2. No" << std::endl;
-	std::cin >> stoneItem;
-	if (stoneItem == 1) {
-		std::cout << "How many stones do you want to use?" << std::endl;
-		std::cin >> stoneNum;
+	bool startEnhance = false;
+	std::cout << "You are enhancing " << Bag[item - 1]->getName() << " for " << money << " coins." << std::endl;
+	while (!startEnhance) {
+		std::cout << "Chances of success is currently " << chance << "%. Do you want to use Enhance Stone?" << std::endl;
+		std::cout << "1. Yes" << std::endl << "2. No" << std::endl;
+		std::cin >> stoneItem;
+		if (stoneItem == 1) {
+			std::cout << "How many stones do you want to use?" << std::endl;
+			std::cin >> stoneNum;
+			for (int i = 0; i < stoneNum; i++) {
+				chance = +(100 - chance) / 4;
+			}
+		}
+		else {
+			startEnhance = true;
+		}
 	}
 	std::mt19937_64 rng{ std::random_device {} () };
 	std::uniform_int_distribution<std::size_t> distribution(1, 100);
