@@ -502,15 +502,15 @@ void GameSystem::fighting_Process() {
 			std::cout << monster.size() << '\n';
 
 			while (player->getHealth() > 0) {	// the monster always is the first monster of the vector
-			
+
 				// The player always attack first, the system of god given to the choosen =]]]]
-				if (player->attack() - monster[0]->getDefend() > 0) {
-					std::cout << player->getName() << " has attack " << monster[0]->getName() << " with " << player->attack() - monster[0]->getDefend() << " damage\n";
-					monster[0]->setHealth(monster[0]->getHealth() - (player->attack() - monster[0]->getDefend()));
-				}
-				else {
-					std::cout << player->getName() << " has attack " << monster[0]->getName() << " with " << 0 << " damage\n";
-				}
+					if (player->attack() - monster[0]->getDefend() > 0) {
+						std::cout << player->getName() << " has attack " << monster[0]->getName() << " with " << player->attack() - monster[0]->getDefend() << " damage\n";
+						monster[0]->setHealth(monster[0]->getHealth() - (player->attack() - monster[0]->getDefend()));
+					}
+					else {
+						std::cout << player->getName() << " has attack " << monster[0]->getName() << " with " << 0 << " damage\n";
+					}
 
 				//minus the duration if the player is using consumable item
 				player->expire();
