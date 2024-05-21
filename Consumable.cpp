@@ -4,8 +4,8 @@
 #include<string>
 
 //Init
-  //Consumable::Consumable(std::string newName, std::string newType, int newLevel, int newMoney, int newHealth, int newAttack, int newDefend, int newCritical_percent, std::string newDescription, int newID, int newDuration)
-  //    : Item(newName, newType, newLevel, newMoney, newHealth, newAttack, newDefend, newCritical_percent, newDescription,newID), duration(newDuration) {}
+  Consumable::Consumable(std::string, std::string, int, int, int, int, int, int, std::string, int, int)
+      : Item(name, type, level, money, health, Attack, defend, critical_percent, description, id), duration(0) {};
 //Getter
 int Consumable::getDuration() {
     return duration;
