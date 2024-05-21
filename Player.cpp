@@ -244,10 +244,24 @@ void Player::Enhance(int item) {
 		std::cout << "1. Yes" << std::endl << "2. No" << std::endl;
 		std::cin >> stoneItem;
 		if (stoneItem == 1) {
+			std::vector<int> stoneSpot;
 			std::cout << "How many stones do you want to use?" << std::endl;
 			std::cin >> stoneNum;
-			for (int i = 0; i < stoneNum; i++) {
-				chance = +(100 - chance) / 4;
+			for (int j = 0; j < Bag.size(); j++) {
+				if (Bag[j]->getName() == "Enhance Stone") {
+					stoneSpot.push_back(j);
+				}
+			}
+			if (stoneSpot.size() < static_cast<unsigned long long>(stoneNum) - 1) {
+				std::cout << "You don't have enough Enhance Stone" << std::endl;
+			}
+			else {
+				for (int i = 0; i < stoneNum; i++) {
+					chance = chance + (100 - chance) / 6;
+					delete Bag[stoneSpot[0]];
+					Bag.erase(Bag.begin() + stoneSpot[0]);
+					stoneSpot.erase(stoneSpot.begin());
+				}
 			}
 		}
 		else {
