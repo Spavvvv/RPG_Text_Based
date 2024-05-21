@@ -430,38 +430,41 @@ void GameSystem::genMonster() {
 	while (total_monster > 0) {
 		percentage = distribution(rng);
 		if (percentage <= probabilities[Dungeon_level].first_class) {
-			Monster* monster_ = new Monster("Goblin", 50, 50, 10, 10, player->getLevel(), 100, 10, 10);
+			Monster* monster_ = new Monster("Goblin", 50, 50, 25, 5, player->getLevel(), 20, 10, 10);
 			monster.push_back(monster_);
 			total_monster --;
 		}
 		else if (percentage < probabilities[Dungeon_level].second_class && percentage > probabilities[Dungeon_level].first_class) {
-			Monster* monster_ = new Monster("Khoi", 40, 40, 20, 20, player->getLevel(), 0, 20, 20);
+			Monster* monster_ = new Monster("Khoi", 70, 70, 30, 20, player->getLevel(), 40, 20, 20);
 			monster.push_back(monster_);
 			total_monster--;
 		}
 		else { 
 			//If player are unlucky =]]]]
 			if (Dungeon_level == 3) {
-				Undead* undead = new Undead("Undead", 300, 300, 100, 80, player->getLevel(), 0, 500, 80, false);
+				Undead* undead = new Undead("Undead", 250, 250, 40, 75, player->getLevel(), 200, 30, 60);
 				monster.push_back(undead);
 				total_monster--;
 			}
 
 			//it's 10% right now, comeon, it's not our false =]]]]
 			else if (Dungeon_level == 4) {
-				Dragon* dragon = new Dragon("Dragon", 500, 500, 150, 100, player->getLevel(), 0, 1000, 80, false);
+				Dragon* dragon = new Dragon("Dragon", 400, 400, 45, 45, player->getLevel(), 300, 30, 60);
 				monster.push_back(dragon);
 				total_monster--;
 			}
 
 
 			//wellcome to the hell, n**** =]]]]]]]
-			else if(Dungeon_level ==5) {
-					Undead* undead = new Undead("Undead", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false);
+			else if(Dungeon_level == 5) {
+					Undead* undead = new Undead("Undead", 250, 250, 40, 75, player->getLevel(), 0, 30, 0);
+					undead->sieuUndead(player->getChoosen());
 					monster.push_back(undead);
-					Dragon* dragon = new Dragon("Dragon", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false);
+					Dragon* dragon = new Dragon("Dragon", 400, 400, 45, 45, player->getLevel(), 0, 30, 0);
+					dragon->sieuDragon(player->getChoosen());
 					monster.push_back(dragon);
-					Manh* manh = new Manh("Hitler", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false);
+					Manh* manh = new Manh("Hitler", 400, 400, 85, 55, player->getLevel(), 0, 75, 0);
+					manh->sieuManh(player->getJew());
 					monster.push_back(manh);
 					total_monster -= 3;
 			}
@@ -502,11 +505,11 @@ void GameSystem::fighting_Process() {
 			std::cout << monster.size() << '\n';
 
 			while (player->getHealth() > 0) {	// the monster always is the first monster of the vector
-			
+				int playerDmg = player->attack();
 				// The player always attack first, the system of god given to the choosen =]]]]
-				if (player->attack() - monster[0]->getDefend() > 0) {
-					std::cout << player->getName() << " has attack " << monster[0]->getName() << " with " << player->attack() - monster[0]->getDefend() << " damage\n";
-					monster[0]->setHealth(monster[0]->getHealth() - (player->attack() - monster[0]->getDefend()));
+				if (playerDmg - monster[0]->getDefend() > 0) {
+					std::cout << player->getName() << " has attack " << monster[0]->getName() << " with " << playerDmg - monster[0]->getDefend() << " damage\n";
+					monster[0]->setHealth(monster[0]->getHealth() - (playerDmg - monster[0]->getDefend()));
 				}
 				else {
 					std::cout << player->getName() << " has attack " << monster[0]->getName() << " with " << 0 << " damage\n";
@@ -517,9 +520,10 @@ void GameSystem::fighting_Process() {
 
 				//validate if the monster still alive
 				if (monster[0]->getHealth() > 0) {
-					if (monster[0]->getAttack() - player->getDefend() > 0) {
-						std::cout << monster[0]->getName() << " has attack " << player->getName() << " with " << monster[0]->getAttack() - player->getDefend() << " damage\n";
-						player->setHealth(player->getHealth() - monster[0]->attack());
+					int monsterDmg = monster[0]->getAttack();
+					if (monsterDmg - player->getDefend() > 0) {
+						std::cout << monster[0]->getName() << " has attack " << player->getName() << " with " << monsterDmg - player->getDefend() << " damage\n";
+						player->setHealth(player->getHealth() - (monsterDmg - player->getDefend()));
 					}
 					else {
 						std::cout << monster[0]->getName() << " has attack " << player->getName() << " with " << 0 << " damage\n";

@@ -1,34 +1,6 @@
 #include "Monster.h"
-void Undead::display() {
-	std::cout << "Name:  "<< getName() << "\n";
-	std::cout << "Health: " << getHealth() << "\n";
-	std::cout << "Attack: " << getAttack() << "\n";
-	std::cout << "--------------------------\n";
-	}
-void Dragon::display() {
-	std::cout << "Name:  " << getName() << "\n";
-	std::cout << "Health: " << getHealth() << "\n";
-	std::cout << "Attack: " << getAttack() << "\n";
-	std::cout << "--------------------------\n";
-}
+#include "Player.h"
 
-void Manh::display(){
-	std::cout << "Name:  "<< getName() << "\n";
-	std::cout << "Health: " << getHealth() << "\n";
-	std::cout << "Attack: " << getAttack() << "\n";
-	std::cout << "--------------------------\n";
-}
-void displayInfoMonster(Basic_monster& type) {
-
-	/*for (const auto& monster:type) {
-		monster->display();
-	}
-	std::cout << "" << std::endl;*/
-}
-
-int Monster::attack() {
-	return Attack;
-}
 void Monster::display() {
 	std::cout << "Name: " << name;
 	std::cout << '\n';
@@ -45,42 +17,19 @@ void Monster::display() {
 }
 
 
-bool Undead::curse() {
-	return false;
+void Undead::sieuUndead(bool check) {
+	if (check) {
+		this->health = PLAYER_MAX_HEALTH;
+	}
 }
-bool Dragon::hailH() {
-	return false;
+void Dragon::sieuDragon(bool check) {
+	if (check) {
+		this->defend = PLAYER_MAX_DEFEND;
+	}
 }
-bool Manh::loser() {
-	return false;
+void Manh::sieuManh(bool check) {
+	if (check) {
+		this->Attack = PLAYER_MAX_ATTACK;
+		this->critical_percent = PLAYER_MAX_CRITICAL;
+	}
 }
-
-int Undead::attack() {
-	return Attack;
-};
-int Dragon::attack() {
-	return Attack;
-}
-int Manh::attack() {
-	return Attack;
-}
-int Undead::gethealth() {
-	return health;
-}
-int Dragon::gethealth() {
-	return health;
-}
-int Manh::gethealth() {
-	return health;
-}
-void Undead::sethealth(int health) {
-	this->health = health;
-}
-void Dragon::sethealth(int health) {
-	this->health = health;
-}
-void Manh::sethealth(int health) {
-	this->health = health;
-}
-
-

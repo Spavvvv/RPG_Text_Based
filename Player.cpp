@@ -9,12 +9,13 @@
 #include "Consumable.h"
 
 //Init
+
 Player::Player() : Character (){
 	isChoosenOne = false;
 	isAdmin = false;
 	isJew = false;
 	isVip = false;
-	money = 999;
+	money = 0;
 
 	for (int c = 0; c < 6; c++) {
 		isEquip[c] = false;
