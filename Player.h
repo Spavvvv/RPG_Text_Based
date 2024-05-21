@@ -33,7 +33,15 @@ public:
 	//Init
 	Player();
 	Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip) 
-		: Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false) {}
+		: Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false) {
+
+		money = 999;
+
+		for (int c = 0; c < 6; c++) {
+			isEquip[c] = false;
+			Box[c] = nullptr;
+		}
+	}
 
 	//Getter
 	bool getChoosen() const;

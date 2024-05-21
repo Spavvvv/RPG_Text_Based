@@ -81,12 +81,14 @@ void GameSystem::newGame() {
 
 	std::cout << "Let's start your journey," << player->getName() << '\n';
 	readText("text\\introduce.txt");
+	genMonster();
 	play();
 }
 
 void GameSystem::level_Up() {
 	while (player->getExperience() >= 100) {
 		player->setMaxHealth(player->getMaxHealth() + 20);
+		player->setHealth(player->getMaxHealth());
 		player->setAttack(player->getAttack() + 5);
 		player->setDefend(player->getDefend() + 5);
 		player->setLevel(player->getLevel() + 1);
@@ -94,7 +96,7 @@ void GameSystem::level_Up() {
 		player->setExperience(player->getExperience() - 100);
 
 		//inform player that level up
-		std::cout << "Level Up !!!" << 'n';
+		std::cout << "LEVEL UP !!!" << '\n';
 	}
 }
 
@@ -126,35 +128,39 @@ bool GameSystem::saveGame() {
 
 		//money, yeah, actually, because it's money so.. y'all know, it should have a separate line.. 
 		// idk but maybe it'll give me some lucky like.. tomorrow, i may pick up some of them.
-		fileSave << player->getMoney();
+		fileSave << player->getMoney() << '\n';
 
 		//save the equipment and the plag that mark the equipment
-		for (int i = 0; i < 4; i++) {
-			fileSave << player->getEquipmentBox(i)->getName() << " ";
-			fileSave << player->getEquipmentBox(i)->getType() << " ";
-			fileSave << player->getEquipmentBox(i)->getLevel() << " ";
-			fileSave << player->getEquipmentBox(i)->getMoney() << " ";
-			fileSave << player->getEquipmentBox(i)->getHealth() << " ";
-			fileSave << player->getEquipmentBox(i)->getAttack() << " ";
-			fileSave << player->getEquipmentBox(i)->getDefend() << " ";
-			fileSave << player->getEquipmentBox(i)->getCritical_percent() << " ";
-			fileSave << player->getEquipmentBox(i)->getDescription() << " ";
-			fileSave << player->getEquipmentBox(i)->getID() << " ";
-			if (i >= 0 && i < 4) {
-				fileSave << dynamic_cast<Equipment*>(player->getEquipmentBox(i))->getDurability() << " ";
-			}
-			else {
-				fileSave << dynamic_cast<Consumable*>(player->getEquipmentBox(i))->getDuration() << " ";
-			}
-			fileSave << '\n';
-		}
-
 		for (int i = 0; i < 6; i++) {
 			fileSave << player->getIsEquip(i) << " ";
 		}
 
+		fileSave << '\n';
+
 		//save the dungeon level 
 		fileSave << Dungeon_level;
+
+		for (int i = 0; i < 6; i++) {
+			if (player->getIsEquip(i) == true) {
+				fileSave << player->getEquipmentBox(i)->getName() << " ";
+				fileSave << player->getEquipmentBox(i)->getType() << " ";
+				fileSave << player->getEquipmentBox(i)->getLevel() << " ";
+				fileSave << player->getEquipmentBox(i)->getMoney() << " ";
+				fileSave << player->getEquipmentBox(i)->getHealth() << " ";
+				fileSave << player->getEquipmentBox(i)->getAttack() << " ";
+				fileSave << player->getEquipmentBox(i)->getDefend() << " ";
+				fileSave << player->getEquipmentBox(i)->getCritical_percent() << " ";
+				fileSave << player->getEquipmentBox(i)->getDescription() << " ";
+				fileSave << player->getEquipmentBox(i)->getID() << " ";
+				if (i >= 0 && i < 4) {
+					fileSave << dynamic_cast<Equipment*>(player->getEquipmentBox(i))->getDurability() << " ";
+				}
+				else {
+					fileSave << dynamic_cast<Consumable*>(player->getEquipmentBox(i))->getDuration() << " ";
+				}
+				fileSave << '\n';
+			}
+		}
 
 		//close the file
 		fileSave.close();
@@ -228,67 +234,74 @@ void GameSystem::loadGame() {
 					break;
 				}
 			}
-				line = "";
-				count++;
-				
-				//set the money
-				getline(loadFile, line);
-				player->setMoney(stoi(line));
+		}
+
+		line = "";
+		count++;
+
+		//set the money
+		getline(loadFile, line);
+		player->setMoney(stoi(line));
 
 
-				//set the equipment box and the flag
-				for (int c = 0; c < 4; c++) {
-					std::string n, t, desc;
-					int lvl, m, h, a, d, cp, i, du;
+		//---------------LOAD THE FLAG OF EQUIPMENT BOX-------------------
+		getline(loadFile, line);
 
-					loadFile.ignore();
-					std::getline(loadFile, n);
-					std::getline(loadFile, t);
-					loadFile >> lvl >> m >> h >> a >> d >> cp;
-					loadFile.ignore(); // Ignore the newline character after cp
-					std::getline(loadFile, desc);
-					loadFile >> i;
-					loadFile >> du;
-					if (c >= 0 && c < 4) {
-						Equipment* equipment = new Equipment(n, t, lvl, m, h, a, d, cp, desc, i, du);
+		player->setIsEquip(0, line[0] - '0');
+		player->setIsEquip(1, line[2] - '0');
+		player->setIsEquip(2, line[4] - '0');
+		player->setIsEquip(3, line[6] - '0');
+		player->setIsEquip(4, line[8] - '0');
+		player->setIsEquip(5, line[10] - '0');
 
-						player->setEquipmentBox(c, equipment);
-						equipment = nullptr;
-					}
-					else {
-						Consumable* consumable = new Consumable(n, t, lvl, m, h, a, d, cp, desc, i, du);
-						player->setEquipmentBox(c, consumable);
-						consumable = nullptr;
-					}
-				}
+		//--------------------LOAD THE LEVEL INFORMATION----------------------
+		getline(loadFile, line);
+		Dungeon_level = stoi(line);
+
+		//validate the level information
+		if (Dungeon_level > UPPER_DUNGEON_LEVEL) {
+			Dungeon_level = UPPER_DUNGEON_LEVEL;
+		}
+		else if (Dungeon_level < LOWER_DUNGEON_LEVEL) {
+			Dungeon_level = LOWER_DUNGEON_LEVEL;
+		}
+
+		line = "";
+
+		//-----------------LOAD THE EQUIPMENT BOX INFORMATION--------------------
+		getline(loadFile, line);
+
+		if (line.empty() == false)
+			for (int c = 0; c < 4; c++) {
+				std::string n, t, desc;
+				int lvl, m, h, a, d, cp, i, du;
 
 				loadFile.ignore();
-				getline(loadFile, line);
+				std::getline(loadFile, n);
+				std::getline(loadFile, t);
+				loadFile >> lvl >> m >> h >> a >> d >> cp;
+				loadFile.ignore(); // Ignore the newline character after cp
+				std::getline(loadFile, desc);
+				loadFile >> i;
+				loadFile >> du;
+				if (c >= 0 && c < 4) {
+					Equipment* equipment = new Equipment(n, t, lvl, m, h, a, d, cp, desc, i, du);
 
-				player->setIsEquip(0, line[0] - '0');
-				player->setIsEquip(1, line[2] - '0');
-				player->setIsEquip(2, line[4] - '0');
-				player->setIsEquip(3, line[6] - '0');
-				player->setIsEquip(4, line[8] - '0');
-				player->setIsEquip(5, line[10] - '0');
-
-				//--------------------------------------------------------------------
-
-				//--------------------LOAD THE LEVEL INFORMATION----------------------
-				getline(loadFile, line);
-				Dungeon_level = stoi(line);
-
-				//validate the level information
-				if (Dungeon_level > UPPER_DUNGEON_LEVEL) {
-					Dungeon_level = UPPER_DUNGEON_LEVEL;
+					player->setEquipmentBox(c, equipment);
+					equipment = nullptr;
+					delete equipment;
 				}
-				else if (Dungeon_level < LOWER_DUNGEON_LEVEL) {
-					Dungeon_level = LOWER_DUNGEON_LEVEL;
+				else {
+					Consumable* consumable = new Consumable(n, t, lvl, m, h, a, d, cp, desc, i, du);
+					player->setEquipmentBox(c, consumable);
+					consumable = nullptr;
+					delete consumable;
 				}
 			}
 			// After loaded the game data sucessfully, let's play game
+			genMonster();
 			play();
-		}
+	}
 }
 
 void GameSystem::encounter() {
@@ -356,47 +369,51 @@ void GameSystem::genMonster() {
 	//generate monster
 	int total_monster = static_cast<int>(level_map[Dungeon_level]);
 
+	//std::cout << total_monster << '\n';
+
 	int percentage = 0;
 	while (total_monster > 0) {
 		percentage = distribution(rng);
-		if (percentage < probabilities[Dungeon_level].first_class) {
+		if (percentage <= probabilities[Dungeon_level].first_class) {
 			Monster* monster_ = new Monster("Goblin", 50, 50, 10, 10, player->getLevel(), 100, 10, 10);
 			monster.push_back(monster_);
+			total_monster --;
 		}
 		else if (percentage < probabilities[Dungeon_level].second_class && percentage > probabilities[Dungeon_level].first_class) {
 			Monster* monster_ = new Monster("Khoi", 40, 40, 20, 20, player->getLevel(), 0, 20, 20);
 			monster.push_back(monster_);
+			total_monster--;
 		}
 		else { 
-
 			//If player are unlucky =]]]]
 			if (Dungeon_level == 3) {
 				Undead* undead = new Undead("Undead", 300, 300, 100, 80, player->getLevel(), 0, 500, 80, false);
 				monster.push_back(undead);
+				total_monster--;
 			}
 
 			//it's 10% right now, comeon, it's not our false =]]]]
 			else if (Dungeon_level == 4) {
 				Dragon* dragon = new Dragon("Dragon", 500, 500, 150, 100, player->getLevel(), 0, 1000, 80, false);
 				monster.push_back(dragon);
+				total_monster--;
 			}
 
 
 			//wellcome to the hell, n**** =]]]]]]]
-			else {
-				if (Dungeon_level == 5) {
+			else if(Dungeon_level ==5) {
 					Undead* undead = new Undead("Undead", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false);
 					monster.push_back(undead);
 					Dragon* dragon = new Dragon("Dragon", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false);
 					monster.push_back(dragon);
 					Manh* manh = new Manh("Hitler", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false);
 					monster.push_back(manh);
-				}
-				total_monster -= 2;
+					total_monster -= 3;
 			}
 		}
-		total_monster--;
 	}
+
+	//std::cout << monster.size() << '\n';
 }
 
 //the process include using items before figting and some other options like running or.. hmm
@@ -425,41 +442,41 @@ void GameSystem::fighting_Process() {
 			player->openBag();
 		}
 		else if (Ichoice == 3) {
-			while (player->getHealth() > 0) {	// the monster always is the first monster
-											// of the vector
-											
+
+			std::cout << monster.size() << '\n';
+
+			while (player->getHealth() > 0) {	// the monster always is the first monster of the vector
 			
 				// The player always attack first, the system of god given to the choosen =]]]]
 				if (player->attack() - monster[0]->getDefend() > 0) {
-					std::cout << player->getName() << "has attack " << monster[0]->getName() << "with " << player->attack() - monster[0]->getDefend() << "damage\n";
+					std::cout << player->getName() << " has attack " << monster[0]->getName() << " with " << player->attack() - monster[0]->getDefend() << " damage\n";
 					monster[0]->setHealth(monster[0]->getHealth() - (player->attack() - monster[0]->getDefend()));
 				}
 				else {
-					std::cout << player->getName() << "has attack " << monster[0]->getName() << "with " << 0 << "damage\n";
-					monster[0]->setHealth(monster[0]->getHealth() - 0);
+					std::cout << player->getName() << " has attack " << monster[0]->getName() << " with " << 0 << " damage\n";
 				}
 
 				//minus the duration if the player is using consumable item
 				player->expire();
 
-
 				//validate if the monster still alive
 				if (monster[0]->getHealth() > 0) {
 					if (monster[0]->getAttack() - player->getDefend() > 0) {
-						std::cout << monster[0]->getName() << "has attack " << player->getName() << "with " << monster[0]->getAttack() - player->getDefend() << "damage\n";
+						std::cout << monster[0]->getName() << " has attack " << player->getName() << " with " << monster[0]->getAttack() - player->getDefend() << " damage\n";
 						player->setHealth(player->getHealth() - monster[0]->attack());
 					}
 					else {
-						std::cout << monster[0]->getName() << "has attack " << player->getName() << "with " << 0 << "damage\n";
-						player->setHealth(player->getHealth() - 0);
+						std::cout << monster[0]->getName() << " has attack " << player->getName() << " with " << 0 << " damage\n";
 					}
 				}
 				else {
 					//Clear the monster out of the vector
 					std::cout << "Monster died ! \n";
 					player->setMoney(player->getMoney() + monster[0]->getMoney());
+					player->setExperience(player->getExperience() + monster[0]->getExperience());
 					delete monster[0];
 					monster.erase(monster.begin());
+					break;
 				}
 			}
 
@@ -468,7 +485,6 @@ void GameSystem::fighting_Process() {
 				std::cout << "You died ! \n";
 				delete player;
 				mainMenu();
-
 			}
 		}
 		else if (Ichoice == 4) {
@@ -545,8 +561,8 @@ void GameSystem::play() {
 	std::uniform_int_distribution <std::size_t> distribution(0, 100);
 
 	int change = 10;		// the lucky number choose by Duy Shitman :>
+
 	while (true) {
-		genMonster();
 
 		if (change == distribution(rng)) {
 			encounter();
@@ -565,6 +581,7 @@ void GameSystem::play() {
 			std::cout << "Level " << Dungeon_level << " cleared !" << '\n';
 			Dungeon_level++;
 			option();
+			break;
 		}
 	}
 

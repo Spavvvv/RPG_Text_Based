@@ -10,7 +10,16 @@
 
 //Init
 Player::Player() : Character (){
+	isChoosenOne = false;
+	isAdmin = false;
+	isJew = false;
+	isVip = false;
+	money = 999;
 
+	for (int c = 0; c < 6; c++) {
+		isEquip[c] = false;
+		Box[c] = nullptr;
+	}
 }
 
 //getter
@@ -36,6 +45,7 @@ std::vector<Item*> Player::getBag() const {
 int Player::getHealth() const{
 	int additionalHealth = 0;
 	for (int i = 0; i < 6; i++) {
+		if(isEquip[i] == true)
 		additionalHealth += Box[i]->getHealth();
 	}
 	return health + additionalHealth;
@@ -44,6 +54,7 @@ int Player::getHealth() const{
 int Player::getAttack() const{
 	int additionalAttack = 0;
 	for (int i = 0; i < 6; i++) {
+		if (isEquip[i] == true)
 		additionalAttack += Box[i]->getAttack();
 	}
 	return Attack + additionalAttack;
@@ -52,6 +63,7 @@ int Player::getAttack() const{
 int Player::getDefend() const{
 	int additionalDefend = 0;
 	for (int i = 0; i < 6; i++) {
+		if (isEquip[i] == true)
 		additionalDefend += Box[i]->getDefend();
 	}
 	return defend + additionalDefend;
@@ -60,7 +72,9 @@ int Player::getDefend() const{
 int Player::getCritical() const{
 	int additionalCrit = 0;
 	for (int i = 0; i < 6;  i++) {
-		additionalCrit += Box[i]->getCritical_percent();
+		if (isEquip[i] == true) {
+			additionalCrit += Box[i]->getCritical_percent();
+		}
 	}
 	return critical_percent + additionalCrit;
 }
@@ -128,10 +142,17 @@ int Player::attack() {
 	}
 	
 	int additionalAtk = 0;
+	int additionalCrit = 0;
 	for (int i = 0; i < 6; i++) {
-		additionalAtk += Box[i]->getCritical_percent();
+		if (isEquip[i] == true) {
+			additionalAtk += Box[i]->getAttack();
+			additionalCrit += Box[i]->getCritical_percent();
+		}
 	}
-	return dmg + additionalAtk;
+	if (random <= additionalCrit)
+		return dmg + additionalAtk * 2;
+	else
+		return dmg + additionalAtk;
 }
 
 //method for open the bag

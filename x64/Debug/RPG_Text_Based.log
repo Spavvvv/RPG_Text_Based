@@ -1,7 +1,5 @@
-﻿  Character.cpp
-  GameSystem.cpp
-C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(361,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(517,14): warning C4101: 'amount': unreferenced local variable
-C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(517,8): warning C4101: 'item': unreferenced local variable
-  Generating Code...
+﻿  GameSystem.cpp
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(376,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(533,14): warning C4101: 'amount': unreferenced local variable
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(533,8): warning C4101: 'item': unreferenced local variable
   RPG_Text_Based.vcxproj -> C:\Users\tiend\source\repos\RPG_Text_Based\x64\Debug\RPG_Text_Based.exe
