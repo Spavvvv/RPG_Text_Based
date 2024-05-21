@@ -88,7 +88,9 @@ bool Player::getIsEquip(int index) const {
 Item* Player::getBag(int index) const {
 	return Bag[index];
 }
-
+int Player::getBagSize() const {
+	return Bag.size();
+}
 
 //setter
 void Player::setChoosen(bool isChoosen_) {

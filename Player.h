@@ -53,6 +53,7 @@ public:
 	bool getIsEquip(int index) const;
 	std::vector<Item*> getBag() const;
 	Item* getBag(int index) const;
+	int getBagSize() const;
 
 	//Setter
 	void setChoosen(bool);

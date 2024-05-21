@@ -173,7 +173,28 @@ bool GameSystem::saveGame() {
 			}
 		}
 		//---------------------SAVE THE BAG @@--------------------------------
-		
+
+		if (player->getBagSize() != 0) {
+			for (int i = 0; i < player->getBagSize(); i++) {
+				fileSave << player->getBag(i)->getName() << " ";
+				fileSave << player->getBag(i)->getType() << " ";
+				fileSave << player->getBag(i)->getLevel() << " ";
+				fileSave << player->getBag(i)->getMoney() << " ";
+				fileSave << player->getBag(i)->getHealth() << " ";
+				fileSave << player->getBag(i)->getAttack() << " ";
+				fileSave << player->getBag(i)->getDefend() << " ";
+				fileSave << player->getBag(i)->getCritical_percent() << " ";
+				fileSave << player->getBag(i)->getDescription() << " ";
+				fileSave << player->getBag(i)->getID() << " ";
+				if (player->getBag(i)->getType() == "Helmet" || player->getBag(i)->getType() == "Armor" || player->getBag(i)->getType() == "Ring" || player->getBag(i)->getType() == "Weapon") {
+					fileSave << dynamic_cast<Equipment*>(player->getBag(i))->getDurability() << " ";
+				}
+				else {
+					fileSave << dynamic_cast<Consumable*>(player->getBag(i))->getDuration() << " ";
+				}
+				fileSave << '\n';
+			}
+		}
 
 		//close the file
 		fileSave.close();
@@ -306,7 +327,30 @@ void GameSystem::loadGame() {
 				}
 			}
 		}
-		
+		//-----------------------------LOAD THE BAG -----------------------------
+		//getline(loadFile, line);
+		while (getline(loadFile, line)) {
+			std::stringstream ss(line);
+			std::string name, type;
+			int level, money, health, attack, defend, critical, id, durability;
+			std::string description;
+
+			ss >> name >> type >> level >> money >> health >> attack >> defend >> critical >> description >> id >> durability;
+			if (type == "Helmet" || type == "Weapon" || type == "Ring" || type == "Armor") {
+				Equipment* equipment = new Equipment(name, type, level, money, health, attack, defend, critical, description, id, durability);
+
+				player->setBag(equipment);
+				equipment = nullptr;
+				delete equipment;
+			}
+			else {
+				Consumable* consumable = new Consumable(name, type, level, money, health, attack, defend, critical, description, id, durability);
+				player->setBag(consumable);
+				consumable = nullptr;
+				delete consumable;
+			}
+		}
+
 			// After loaded the game data sucessfully, let's play game
 			genMonster();
 			play();
