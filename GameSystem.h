@@ -39,7 +39,7 @@ public:
 
 	bool saveGame();
 
-	bool loadGame();
+	void loadGame();
 
 	void encounter();
 

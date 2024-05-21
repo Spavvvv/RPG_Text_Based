@@ -20,10 +20,10 @@ void Manh::display(){
 	}
 void displayInfoMonster(Basic_monster& type) {
 
-	for (const auto& mons:type) {
-		mons->display();
+	/*for (const auto& monster:type) {
+		monster->display();
 	}
-	cout << "" << endl;
+	std::cout << "" << std::endl;*/
 }
 
 
@@ -38,13 +38,13 @@ bool Manh::loser() {
 }
 
 int Undead::attack() {
-	return attack;
+	return Attack;
 };
 int Dragon::attack() {
-	return attack;
+	return Attack;
 }
 int Manh::attack() {
-	return attack;
+	return Attack;
 }
 int Undead::gethealth() {
 	return health;

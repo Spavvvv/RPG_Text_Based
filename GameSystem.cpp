@@ -142,10 +142,10 @@ bool GameSystem::saveGame() {
 			fileSave << player->getEquipmentBox(i)->getDescription() << " ";
 			fileSave << player->getEquipmentBox(i)->getID() << " ";
 			if (i >= 0 && i < 4) {
-				fileSave << dynamic_cast<Equipment*>(player->getEquipmentBox(i))->getDurability() << " ";
+				//fileSave << dynamic_cast<Equipment*>(player->getEquipmentBox(i))->getDurability() << " ";
 			}
 			else {
-				fileSave << dynamic_cast<Consumable*>(player->getEquipmentBox(i))->getDuration() << " ";
+				//fileSave << dynamic_cast<Consumable*>(player->getEquipmentBox(i))->getDuration() << " ";
 			}
 			fileSave << '\n';
 		}
@@ -166,7 +166,7 @@ bool GameSystem::saveGame() {
 	return true;
 }
 
-bool GameSystem::loadGame() {
+void GameSystem::loadGame() {
 	std::string loadPath = "save\\saveFile.save";		//access the save file location
 
 	std::ifstream loadFile(loadPath);
@@ -410,30 +410,37 @@ void GameSystem::genMonster() {
 	while (total_monster > 0) {
 		percentage = distribution(rng);
 		if (percentage < probabilities[Dungeon_level].first_class) {
-			monster.push_back(&(Monster("Goblin", 50, 50, 10, 10, player->getLevel(),0, 10, 0)));
+			Monster* monster_ = new Monster("Goblin", 50, 50, 10, 10, player->getLevel(), 0, 10, 0);
+			monster.push_back(monster_);
 		}
 		else if (percentage < probabilities[Dungeon_level].second_class && percentage > probabilities[Dungeon_level].first_class) {
-			monster.push_back(&(Monster("Khoi", 40, 40, 20, 20, player->getLevel(),0, 20, 20)));
+			Monster* monster_ = new Monster("Khoi", 40, 40, 20, 20, player->getLevel(), 0, 20, 20);
+			monster.push_back(monster_);
 		}
 		else { 
 
 			//If player are unlucky =]]]]
-			if (Dungeon_level == 3)
-				monster.push_back(&(Undead("Undead", 300, 300, 100, 80, player->getLevel(),0, 500, 80, false)));
-
+			if (Dungeon_level == 3) {
+				Undead* undead = new Undead("Undead", 300, 300, 100, 80, player->getLevel(), 0, 500, 80, false);
+				monster.push_back(undead);
+			}
 
 			//it's 10% right now, comeon, it's not our false =]]]]
 			else if (Dungeon_level == 4) {
-				monster.push_back(&(Dragon("Dragon", 500, 500, 150, 100, player->getLevel(),0, 1000, 80, false)));
+				Dragon* dragon = new Dragon("Dragon", 500, 500, 150, 100, player->getLevel(), 0, 1000, 80, false);
+				monster.push_back(dragon);
 			}
 
 
 			//wellcome to the hell, n**** =]]]]]]]
 			else {
 				if (Dungeon_level == 5) {
-					monster.push_back(&(Undead("Undead", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false)));
-					monster.push_back(&(Dragon("Dragon", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1,false)));
-					monster.push_back(&(Manh("Hitler", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1,false)));
+					Undead* undead = new Undead("Undead", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false);
+					monster.push_back(undead);
+					Dragon* dragon = new Dragon("Dragon", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false);
+					monster.push_back(dragon);
+					Manh* manh = new Manh("Hitler", PLAYER_MAX_HEALTH, PLAYER_MAX_HEALTH, PLAYER_MAX_ATTACK, PLAYER_MAX_DEFEND, PLAYER_MAX_LEVEL, 1, PLAYER_MAX_CRITICAL, 1, false);
+					monster.push_back(manh);
 				}
 				total_monster -= 2;
 			}

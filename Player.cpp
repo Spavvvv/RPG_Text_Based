@@ -309,12 +309,11 @@ void Player::useItem(int index) {
 }
 
 void Player::expire() {
-	if (isEquip[5] == true) {
+	/*if (isEquip[5] == true) {
 		Consumable* consumable = dynamic_cast<Consumable*>(Box[5]);
 		if (consumable->getDuration() == 0) {
 			Box[5] = nullptr;
 		}
 		consumable->setDuration(consumable->getDuration() - 1);
-	}
-	
+	}*/
 }

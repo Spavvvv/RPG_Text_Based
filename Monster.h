@@ -20,9 +20,8 @@ public:
 	Monster(std::string name, int health, int maxHealth, int Attack, int defend, int level, int experience, int critical_percent, int money) : Character(name, health, maxHealth, Attack, defend, level, experience, critical_percent, money) {}
 
 	//methods
-	virtual int attack() {};
-	virtual void display() {};
-	virtual int health() {};
+	int attack();
+	void display();
 };
 
 
