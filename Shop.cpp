@@ -7,20 +7,33 @@
 
 Shop::Shop() { // Generates all items
     //std::cout << EquipmentsInStock.capacity()
-    Equipment* equipment = new Equipment("Old Sword", "Weapon", 1, 50, 0, 5, 0, 0, "+5 Attack", 101, 100);
-    EquipmentsInStock.emplace_back(equipment);
+    Equipment* equipment_01 = new Equipment("Old_Sword", "Weapon", 1, 50, 0, 5, 0, 0, "+5_Attack", 101, 100);
+    EquipmentsInStock.emplace_back(equipment_01);
+    Equipment* equipment_02 = new Equipment("Old_Helmet", "Helmet", 1, 50, 0, 0, 5, 0, "+5_Defend. But old", 121, 100);
+    EquipmentsInStock.emplace_back(equipment_02);
+    Equipment* equipment_03 = new Equipment("Old_Ring", "Ring", 1, 50, 0, 0, 0, 4, "4_percent_is_gonna_be huge,_right?", 131, 100);
+    EquipmentsInStock.emplace_back(equipment_03);
 
 
-   /* EquipmentsInStock.emplace_back(new Equipment("Old Sword", "Weapon", 1, 50, 0, 5, 0, 0, "+5 Attack", 101, 100));
-    EquipmentsInStock.emplace_back(new Equipment("Old Helmet", "Helmet", 1, 50, 0, 0, 5, 0, "+5 Defend. But old", 121, 100));
-    EquipmentsInStock.emplace_back(new Equipment("Old Ring", "Ring", 1, 50, 0, 0, 0, 4, "4 percent is gonna be huge, right?", 131, 100));
-    ConsumablesInStock.emplace_back(new Consumable("Small Health Potion", "Healing", 1, 3, 50, 0, 0, 0, "Heal a small amount of Health", 140, 1));
-    ConsumablesInStock.emplace_back(new Consumable("Large Health Potion", "Healing", 1, 6, 100, 0, 0, 0, "Heal a large amount of Health", 170, 1));
-    ConsumablesInStock.emplace_back(new Consumable("Attack Potion", "Boosting", 1, 15, 0, 5, 0, 0, "+5 Attack for your next fight", 200, 1));
-    ConsumablesInStock.emplace_back(new Consumable("Defend Potion", "Boosting", 1, 15, 0, 0, 5, 0, "+5 Defend for your next fight", 210, 1));
-    ConsumablesInStock.emplace_back(new Consumable("Crit Potion", "Boosting", 1, 15, 0, 0, 0, 4, "+4 Critical Chance for your next fight", 220, 1));
-    ConsumablesInStock.emplace_back(new Consumable("Health Potion", "Boosting", 1, 15, 25, 0, 0, 0, "+25 Max Health for your next fight", 230, 1));
-    ConsumablesInStock.emplace_back(new Consumable("Enhance Stone", "Enhance", 1, 15, 0, 0, 0, 0, "Boost the chance of enhancement", 240, 1));*/
+    Consumable* consumable_01 = new Consumable("Health_Potion", "Healing", 1, 3, 50, 0, 0, 0, "Heal", 140, 1);
+    Consumable* consumable_02 = new Consumable("Large Health Potion", "Healing", 1, 6, 100, 0, 0, 0, "Heal a large amount of Health", 170, 1);
+    Consumable* consumable_03 = new Consumable("Attack Potion", "Boosting", 1, 15, 0, 5, 0, 0, "+5 Attack for your next fight", 200, 1);
+    Consumable* consumable_04 = new Consumable("Defend Potion", "Boosting", 1, 15, 0, 0, 5, 0, "+5 Defend for your next fight", 210, 1);
+    Consumable* consumable_05 = new Consumable("Crit Potion", "Boosting", 1, 15, 0, 0, 0, 4, "+4 Critical Chance for your next fight", 220, 1);
+    Consumable* consumable_06 = new Consumable("Health Potion", "Boosting", 1, 15, 25, 0, 0, 0, "+25 Max Health for your next fight", 230, 1);
+    Consumable* consumable_07 = new Consumable("Enhance Stone", "Enhance", 1, 15, 0, 0, 0, 0, "Boost the chance of enhancement", 240, 1);
+
+
+    EquipmentsInStock.emplace_back(equipment_01);
+    EquipmentsInStock.emplace_back(equipment_02);
+    EquipmentsInStock.emplace_back(equipment_03);
+    ConsumablesInStock.emplace_back(consumable_01);
+    ConsumablesInStock.emplace_back(consumable_02);
+    ConsumablesInStock.emplace_back(consumable_03);
+    ConsumablesInStock.emplace_back(consumable_04);
+    ConsumablesInStock.emplace_back(consumable_05);
+    ConsumablesInStock.emplace_back(consumable_06);
+    ConsumablesInStock.emplace_back(consumable_07);
 
 
     /*EquipmentsInStock.emplace_back(new Equipment("Old Sword", "Weapon", 1, 50, 0, 5, 0, 0, "+5 Attack", 101, 100));

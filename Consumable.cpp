@@ -4,7 +4,7 @@
 #include<string>
 
 //Init
-  Consumable::Consumable(std::string, std::string, int, int, int, int, int, int, std::string, int, int)
+  Consumable::Consumable(std::string name, std::string type, int level, int money, int health, int Attack, int defend, int critical_percent, std::string description, int id, int duration)
       : Item(name, type, level, money, health, Attack, defend, critical_percent, description, id), duration(0) {};
 //Getter
 int Consumable::getDuration() {
