@@ -234,11 +234,11 @@ bool Player::run(int monsterLevel) {
 }
 void Player::Enhance(int item) {
 	int chance = 20;
-	int EnchanceMoney = 20;
+	int EnhanceMoney = 20;
 	int stoneItem;
 	int stoneNum = 0;
 	bool startEnhance = false;
-	std::cout << "You are enhancing " << Bag[item - 1]->getName() << " for " << money << " coins." << std::endl;
+	std::cout << "You are enhancing " << Bag[item - 1]->getName() << " for " << EnhanceMoney << " coins." << std::endl;
 	while (!startEnhance) {
 		std::cout << "Chances of success is currently " << chance << "%. Do you want to use Enhance Stone?" << std::endl;
 		std::cout << "1. Yes" << std::endl << "2. No" << std::endl;
