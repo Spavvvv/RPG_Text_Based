@@ -205,7 +205,7 @@ void Player::Enhance(int item) {
 			Bag[item]->setAttack(Bag[item]->getAttack() + 3);
 		}
 		if (Bag[item]->getType() == "Armor") {
-			Bag[item]->setMaxHealth(Bag[item]->getMaxHealth() + 3);
+			Bag[item]->setDefend(Bag[item]->getDefend() + 3);
 		}
 		if (Bag[item]->getType() == "Helmet") {
 			Bag[item]->setDefend(Bag[item]->getDefend() + 3);
@@ -309,11 +309,11 @@ void Player::useItem(int index) {
 }
 
 void Player::expire() {
-	/*if (isEquip[5] == true) {
+	if (isEquip[5] == true) {
 		Consumable* consumable = dynamic_cast<Consumable*>(Box[5]);
 		if (consumable->getDuration() == 0) {
 			Box[5] = nullptr;
 		}
 		consumable->setDuration(consumable->getDuration() - 1);
-	}*/
+	}
 }
