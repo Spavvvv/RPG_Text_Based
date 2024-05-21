@@ -136,26 +136,31 @@ int Player::attack() {
 
 //method for open the bag
 void Player::openBag() {
-	for (int i = 0; i < Bag.size(); i++) {
-		std::cout << i + 1 << ". " << Bag[i]->getName() << '\n';
+	if (Bag.empty() == false) {
+		for (int i = 0; i < Bag.size(); i++) {
+			std::cout << i + 1 << ". " << Bag[i]->getName() << '\n';
+		}
+
+		int option;
+		std::cout << "Your Option: ";
+		std::cin >> option;
+
+		if (option > 0 && option <= Bag.size()) {
+			if ((Bag[option]->getType() == "Weapon") || (Bag[option]->getType() == "Ring") || (Bag[option]->getType() == "Armor") || (Bag[option]->getType() == "Helmet")) {
+				int equipmentOption;
+				std::cout << "1. Equip" << std::endl << "2. Enhance" << std::endl << "3. Sell";
+				std::cin >> equipmentOption;
+				if (equipmentOption == 1) Equip(option);
+				else if (equipmentOption == 2) Enhance(option);
+				else Sell(option);
+			}
+			else {
+				useItem(option);
+			}
+		}
 	}
-
-	int option;
-	std::cout << "Your Option: ";
-	std::cin >> option;
-
-	if (option > 0 && option <= Bag.size()) {
-		if ((Bag[option]->getType() == "Weapon") || (Bag[option]->getType() == "Ring") || (Bag[option]->getType() == "Armor") || (Bag[option]->getType() == "Helmet")) {
-			int equipmentOption;
-			std::cout << "1. Equip" << std::endl << "2. Enhance" << std::endl << "3. Sell";
-			std::cin >> equipmentOption;
-			if (equipmentOption == 1) Equip(option);
-			else if (equipmentOption == 2) Enhance(option);
-			else Sell(option);
-		}
-		else {
-			useItem(option);
-		}
+	else {
+		std::cout << "There nothing in your bag, poor af ! \n";
 	}
 	
 }

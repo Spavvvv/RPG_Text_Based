@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character() : name(""), health(0), maxHealth(0), Attack(0), defend(0), level(1), experience(50), critical_percent(0), money(0) {}
+Character::Character() : name(""), health(100), maxHealth(100), Attack(25), defend(15), level(1), experience(50), critical_percent(1), money(10) {}
 
 Character::Character(std::string newName, int newHealth, int newMaxHealth, int newAttack, int newDefend, int newLevel, int newExperience, int newCritical_percent, int newMoney) {
 	name = newName;

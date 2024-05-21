@@ -30,7 +30,18 @@ int Monster::attack() {
 	return Attack;
 }
 void Monster::display() {
-
+	std::cout << "Name: " << name;
+	std::cout << '\n';
+	std::cout << "Health: " << health;
+	std::cout << '\n';
+	std::cout << "Attack: " << Attack;
+	std::cout << '\n';
+	std::cout << "Defend: " << defend;
+	std::cout << '\n';
+	std::cout << "Level: " << level;
+	std::cout << '\n';
+	std::cout << "Experience: " << experience;
+	std::cout << '\n';
 }
 
 

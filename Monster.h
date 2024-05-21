@@ -21,7 +21,7 @@ public:
 
 	//methods
 	int attack();
-	virtual void display();
+	void display();
 };
 
 

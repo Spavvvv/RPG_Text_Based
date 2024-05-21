@@ -6,13 +6,6 @@
 #include <vector>
 #include <map>
 
-#include "Player.h"
-
-#include "Consumable.h"
-
-#include "Equipment.h"
-
-
 int UPPER_DUNGEON_LEVEL = 5;
 int LOWER_DUNGEON_LEVEL = 1;
 
@@ -43,10 +36,10 @@ void GameSystem::mainMenu() {
 		else if (input == "4") {
 			exit();
 		}
-		else {
-			std::cout << "Invalid option !" << '\n';
-			mainMenu();
-		}
+	}
+	else {
+		std::cout << "Invalid option !" << '\n';
+		mainMenu();
 	}
 
 	//clear the std::cin and the cin buffer if the player doing some tricks to destroy the program
@@ -61,7 +54,7 @@ bool GameSystem::readText(std::string filePath) {
 		while (getline(file, line)) {
 			std::cout << line << '\n';
 		}
-		std::cout << "\x1B[2J\x1B[H";
+		//std::cout << "\x1B[2J\x1B[H";
 		file.close();
 		return true;
 	}
@@ -367,7 +360,7 @@ void GameSystem::genMonster() {
 	while (total_monster > 0) {
 		percentage = distribution(rng);
 		if (percentage < probabilities[Dungeon_level].first_class) {
-			Monster* monster_ = new Monster("Goblin", 50, 50, 10, 10, player->getLevel(), 0, 10, 0);
+			Monster* monster_ = new Monster("Goblin", 50, 50, 10, 10, player->getLevel(), 100, 10, 10);
 			monster.push_back(monster_);
 		}
 		else if (percentage < probabilities[Dungeon_level].second_class && percentage > probabilities[Dungeon_level].first_class) {
@@ -412,12 +405,13 @@ void GameSystem::fighting_Process() {
 	std::cout << "1. Show the monster information" << '\n';
 	std::cout << "2. Open Bag" << '\n';
 	std::cout << "3. Fight" << '\n';
-	std::cout << "4. Run";
+	std::cout << "4. Run \n";
 	if (player->getAdmin() == true) {
 		std::cout << "123. Admin" << '\n';
 	}
 
 	std::string choice;
+	std::cout << "you choice: ";
 	std::cin >> choice;
 	int Ichoice = 0;
 	
@@ -552,6 +546,8 @@ void GameSystem::play() {
 
 	int change = 10;		// the lucky number choose by Duy Shitman :>
 	while (true) {
+		genMonster();
+
 		if (change == distribution(rng)) {
 			encounter();
 		}
@@ -566,7 +562,7 @@ void GameSystem::play() {
 			}
 		}
 		if (monster.empty() == true) {
-			std::cout << "Level " << Dungeon_level << "cleared !" << '\n';
+			std::cout << "Level " << Dungeon_level << " cleared !" << '\n';
 			Dungeon_level++;
 			option();
 		}
