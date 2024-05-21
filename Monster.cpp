@@ -49,7 +49,7 @@ bool Undead::curse() {
 	return false;
 }
 bool Dragon::hailH() {
-	
+	return false;
 }
 bool Manh::loser() {
 	return false;
