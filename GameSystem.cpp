@@ -231,49 +231,7 @@ void GameSystem::loadGame() {
 			}
 				line = "";
 				count++;
-				for (int index = 0; index < line.size(); index++) {
-					switch (index)
-					{
-					case 1:
-						player->setHealth(line[index] - '0');
-						break;
-					case 2:
-						player->setMaxHealth(line[index] - '0');
-						break;
-					case 3:
-						player->setAttack(line[index] - '0');
-						break;
-					case 4:
-						player->setDefend(line[index] - '0');
-						break;
-					case 5:
-						player->setLevel(line[index] - '0');
-						break;
-					case 6:
-						player->setExperience(line[index] - '0');
-						break;
-					case 7:
-						player->setCritical(line[index] - '0');
-						break;
-					case 8:
-						player->setChoosen(line[index] - '0');
-						break;
-					case 9:
-						player->setJew(line[index] - '0');
-						break;
-					case 10:
-						player->setVip(line[index] - '0');
-						break;
-					case 11:
-						player->setAdmin(line[index] - '0');
-						break;
-					case 12:
-						player->setMoney(line[index] - '0');
-						break;
-					default:
-						break;
-					}
-				}
+				
 				//set the money
 				getline(loadFile, line);
 				player->setMoney(stoi(line));
