@@ -1,6 +1,12 @@
-﻿  Consumable.cpp
-  Equipment.cpp
+﻿  GameSystem.cpp
   Shop.cpp
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(411,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(458,15): warning C4566: character represented by universal-character-name '\u3002' cannot be represented in the current code page (1252)
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(458,15): warning C4566: character represented by universal-character-name '\uFF3F' cannot be represented in the current code page (1252)
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(458,15): warning C4566: character represented by universal-character-name '\uFF40' cannot be represented in the current code page (1252)
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(566,14): warning C4101: 'amount': unreferenced local variable
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(566,8): warning C4101: 'item': unreferenced local variable
+  Generating Code...
 C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\xmemory(727,82): error C2440: 'initializing': cannot convert from 'initializer list' to '_Objty'
 C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\xmemory(727,82): error C2440:         with
 C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\xmemory(727,82): error C2440:         [
@@ -67,4 +73,3 @@ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.335
               _Objty=Consumable *
           ]
   
-  Generating Code...

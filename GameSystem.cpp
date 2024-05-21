@@ -142,10 +142,10 @@ bool GameSystem::saveGame() {
 			fileSave << player->getEquipmentBox(i)->getDescription() << " ";
 			fileSave << player->getEquipmentBox(i)->getID() << " ";
 			if (i >= 0 && i < 4) {
-				//fileSave << dynamic_cast<Equipment*>(player->getEquipmentBox(i))->getDurability() << " ";
+				fileSave << dynamic_cast<Equipment*>(player->getEquipmentBox(i))->getDurability() << " ";
 			}
 			else {
-				//fileSave << dynamic_cast<Consumable*>(player->getEquipmentBox(i))->getDuration() << " ";
+				fileSave << dynamic_cast<Consumable*>(player->getEquipmentBox(i))->getDuration() << " ";
 			}
 			fileSave << '\n';
 		}
