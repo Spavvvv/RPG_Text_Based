@@ -20,7 +20,7 @@ private:
 
 	int Dungeon_level;
 
-	Shop* Shop;
+	Shop* shop = new Shop();
 
 public:
 	void mainMenu();
@@ -53,5 +53,7 @@ public:
 
 	//For admins
 	void admin_panel();
+
+	~GameSystem();
 };
 

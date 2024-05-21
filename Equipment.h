@@ -12,7 +12,7 @@ public:
   //Init
 	Equipment();
 
-	Equipment(std::string, std::string, int, int, int, int, int, int, std::string, int, int);
+	Equipment(std::string,std::string, int, int, int, int, int, int, std::string, int, int);
 
   //Getters
 	int getDurability() const;

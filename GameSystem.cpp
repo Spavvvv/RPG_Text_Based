@@ -423,6 +423,7 @@ void GameSystem::fighting_Process() {
 	std::cout << "2. Open Bag" << '\n';
 	std::cout << "3. Fight" << '\n';
 	std::cout << "4. Run \n";
+	std::cout << "5. Show your information \n";
 	if (player->getAdmin() == true) {
 		std::cout << "123. Admin" << '\n';
 	}
@@ -432,7 +433,7 @@ void GameSystem::fighting_Process() {
 	std::cin >> choice;
 	int Ichoice = 0;
 	
-	if (choice.length() == 1 && stoi(choice) > 0 && stoi(choice) < 5) {
+	if (choice.length() == 1 && stoi(choice) > 0 && stoi(choice) < 6) {
 		Ichoice = stoi(choice);
 
 		if (Ichoice == 1) {
@@ -500,7 +501,9 @@ void GameSystem::fighting_Process() {
 				fighting_Process();
 			}
 		}
-
+		else if(Ichoice == 5) {
+			player->display();
+		}
 		//hmm
 		if (Ichoice == 123 && player->getAdmin() == true) {
 			monster[0]->setHealth(0);
@@ -530,8 +533,8 @@ void GameSystem::option() {
 			play();
 		}
 		else if (Ichoice == 2) {
-			int item, amount;
-			Shop->shopping(player);
+			//int item, amount;
+			shop->shopping(player);
 			option();
 		}
 		else if (Ichoice == 3) {
@@ -600,4 +603,16 @@ void GameSystem::clearCin() {
 
 void GameSystem::author() {
 
+}
+
+GameSystem::~GameSystem() {
+	delete player;
+	delete shop;
+	if (monster.empty() == false) {
+		for (int i = 0; i < monster.size(); i++) {
+			delete monster[i];
+		}
+
+		monster.clear();
+	}
 }

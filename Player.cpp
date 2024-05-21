@@ -155,6 +155,16 @@ int Player::attack() {
 		return dmg + additionalAtk;
 }
 
+void Player::display() {
+	std::cout << "Name: " << name << '\n';
+	std::cout << "Attack: " << Attack << '\n';
+	std::cout << "Defend: " << defend << '\n';
+	std::cout << "Health: " << health << '\n';
+	std::cout << "Level: " << level << '\n';
+	std::cout << "Experience: " << experience << '\n';
+	std::cout << "Critical: " << critical_percent << "%" << '\n';
+}
+
 //method for open the bag
 void Player::openBag() {
 	if (Bag.empty() == false) {
@@ -335,5 +345,18 @@ void Player::expire() {
 			Box[5] = nullptr;
 		}
 		consumable->setDuration(consumable->getDuration() - 1);
+	}
+}
+
+Player::~Player() {
+	if (Bag.empty() == false) {
+		for (int i = 0; i < Bag.size(); i++) {
+			delete Bag[i];
+		}
+		Bag.clear();
+	}
+
+	for (int i = 0; i < 6; i++) {
+		delete Box[i];
 	}
 }

@@ -67,6 +67,8 @@ public:
 	//Other methods
 	int attack();
 
+	void display();
+
 	//getter
 	int getHealth() const;
 	int getAttack() const;
@@ -93,5 +95,5 @@ public:
 
 	void adminPanel();
 
-	virtual ~Player() = default;
+	~Player();
 };

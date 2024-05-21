@@ -13,7 +13,7 @@ public:
 
     Consumable(int duration) : Item(), duration(0) {}
 
-    Consumable(std::string, std::string, int, int, int, int, int, int, std::string, int, int);
+    Consumable(std::string name, std::string type, int, int, int, int, int, int, std::string description, int, int);
 
    // Consumable(std::string, std::string, int, int, int, int, int, int, int, int, std::string, int);
 

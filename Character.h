@@ -49,4 +49,5 @@ public:
 
 	//other methods
 	virtual int attack();
+	virtual void display();
 };
