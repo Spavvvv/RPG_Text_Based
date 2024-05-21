@@ -14,7 +14,7 @@
 
 class GameSystem {
 private:
-	Player* player;
+	Player* player = new Player(0,0,0,0);
 	
 	std::vector<Monster*> monster;
 

@@ -9,13 +9,7 @@
 #include "Consumable.h"
 
 //Init
-Player::Player(bool isChoosenOne, bool isJew, bool isAdmin, bool isVip)
-	: Character(), isChoosenOne(false), isJew(false), isAdmin(false), isVip(false) {
-
-	for (int i = 0; i < 6; i++) {
-		Box[i] = nullptr;
-		isEquip[i] = false;
-	}
+Player::Player() : Character (){
 
 }
 

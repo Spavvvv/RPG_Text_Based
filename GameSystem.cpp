@@ -6,6 +6,12 @@
 #include <vector>
 #include <map>
 
+#include "Player.h"
+
+#include "Consumable.h"
+
+#include "Equipment.h"
+
 
 int UPPER_DUNGEON_LEVEL = 5;
 int LOWER_DUNGEON_LEVEL = 1;
@@ -293,19 +299,12 @@ void GameSystem::loadGame() {
 }
 
 void GameSystem::encounter() {
-	std::mt19937_64 rng{ std::random_device{} () };
-	std::uniform_int_distribution <std::size_t> distribution(0, 100);
-
-	int probabilities = 30;
-
-	if (distribution(rng) < 30) {
 		if (player->getChoosen() == false) {
 			player->setChoosen(true);
 		}
 		else if(player->getJew() == false){
 			player->setJew(true);
 		}
-	}
 }
 
 void GameSystem::genMonster() {
@@ -413,7 +412,7 @@ void GameSystem::fighting_Process() {
 	std::cout << "1. Show the monster information" << '\n';
 	std::cout << "2. Open Bag" << '\n';
 	std::cout << "3. Fight" << '\n';
-	std::cout << "4. Run (´。＿。｀)";
+	std::cout << "4. Run";
 	if (player->getAdmin() == true) {
 		std::cout << "123. Admin" << '\n';
 	}
@@ -584,4 +583,8 @@ void GameSystem::exit() {
 void GameSystem::clearCin() {
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+void GameSystem::author() {
+
 }

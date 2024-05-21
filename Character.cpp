@@ -71,3 +71,7 @@ int Character::getCritical() const {
 int Character::getMoney() const {
 	return money;
 }
+
+int Character::attack() {
+	return Attack;
+}

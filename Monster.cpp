@@ -26,6 +26,13 @@ void displayInfoMonster(Basic_monster& type) {
 	std::cout << "" << std::endl;*/
 }
 
+int Monster::attack() {
+	return Attack;
+}
+void Monster::display() {
+
+}
+
 
 bool Undead::curse() {
 	return false;
@@ -64,3 +71,5 @@ void Dragon::sethealth(int health) {
 void Manh::sethealth(int health) {
 	this->health = health;
 }
+
+

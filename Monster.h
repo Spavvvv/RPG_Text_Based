@@ -4,7 +4,7 @@
 
 #include <string>
 
-	enum class Basic_monster {
+enum class Basic_monster {
 	Undead,
 	Dragon,
 	Goblin
@@ -21,7 +21,7 @@ public:
 
 	//methods
 	int attack();
-	void display();
+	virtual void display();
 };
 
 
