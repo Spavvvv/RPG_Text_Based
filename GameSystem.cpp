@@ -5,6 +5,7 @@
 #include <random>
 #include <vector>
 #include <map>
+#include <sstream>
 
 int UPPER_DUNGEON_LEVEL = 5;
 int LOWER_DUNGEON_LEVEL = 1;
@@ -138,13 +139,16 @@ bool GameSystem::saveGame() {
 
 		//save the equipment and the plag that mark the equipment
 		for (int i = 0; i < 6; i++) {
-			fileSave << player->getIsEquip(i) << " ";
+			if(i<5)
+				fileSave << player->getIsEquip(i) << " ";
+			else 
+				fileSave << player->getIsEquip(i);
 		}
 
 		fileSave << '\n';
 
 		//save the dungeon level 
-		fileSave << Dungeon_level;
+		fileSave << Dungeon_level << '\n';
 
 		for (int i = 0; i < 6; i++) {
 			if (player->getIsEquip(i) == true) {
@@ -276,34 +280,30 @@ void GameSystem::loadGame() {
 
 		//-----------------LOAD THE EQUIPMENT BOX INFORMATION--------------------
 		getline(loadFile, line);
+		for (int c = 0; c < 4; c++) {
+			if (line.empty() == false) {
+				std::stringstream ss(line);
+				std::string name, type;
+				int level, money, health, attack, defend, critical, id, durability;
+				std::string description;
 
-		if (line.empty() == false)
-			for (int c = 0; c < 4; c++) {
-				std::string n, t, desc;
-				int lvl, m, h, a, d, cp, i, du;
-
-				loadFile.ignore();
-				std::getline(loadFile, n);
-				std::getline(loadFile, t);
-				loadFile >> lvl >> m >> h >> a >> d >> cp;
-				loadFile.ignore(); // Ignore the newline character after cp
-				std::getline(loadFile, desc);
-				loadFile >> i;
-				loadFile >> du;
+				ss >> name >> type >> level >> money >> health >> attack >> defend >> critical >> description >> id >> durability;
 				if (c >= 0 && c < 4) {
-					Equipment* equipment = new Equipment(n, t, lvl, m, h, a, d, cp, desc, i, du);
+					Equipment* equipment = new Equipment(name, type, level, money, health, attack, defend, critical, description, id, durability);
 
 					player->setEquipmentBox(c, equipment);
 					equipment = nullptr;
 					delete equipment;
 				}
 				else {
-					Consumable* consumable = new Consumable(n, t, lvl, m, h, a, d, cp, desc, i, du);
+					Consumable* consumable = new Consumable(name, type, level, money, health, attack, defend, critical, description, id, durability);
 					player->setEquipmentBox(c, consumable);
 					consumable = nullptr;
 					delete consumable;
 				}
 			}
+		}
+		
 			// After loaded the game data sucessfully, let's play game
 			genMonster();
 			play();

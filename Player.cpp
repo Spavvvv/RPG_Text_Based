@@ -161,8 +161,16 @@ void Player::display() {
 	std::cout << "Defend: " << defend << '\n';
 	std::cout << "Health: " << health << '\n';
 	std::cout << "Level: " << level << '\n';
+	std::cout << "Money: " << money << '\n';
 	std::cout << "Experience: " << experience << '\n';
 	std::cout << "Critical: " << critical_percent << "%" << '\n';
+
+	for (int i = 0; i < 4; i++) {
+		//std::cout << isEquip[i] << '\n';
+		if (isEquip[i] == true) {
+			std::cout << i+1 << "." << Box[i]->getName() << '\n';
+		}
+	}
 }
 
 //method for open the bag
@@ -179,14 +187,15 @@ void Player::openBag() {
 		if (option > 0 && option <= Bag.size()) {
 			if ((Bag[option - 1]->getType() == "Weapon") || (Bag[option - 1]->getType() == "Ring") || (Bag[option - 1]->getType() == "Armor") || (Bag[option - 1]->getType() == "Helmet")) {
 				int equipmentOption;
-				std::cout << "1. Equip" << std::endl << "2. Enhance" << std::endl << "3. Sell";
+				std::cout << "1. Equip" << std::endl << "2. Enhance" << std::endl << "3. Sell" << '\n';
+				std::cout << "You option: ";
 				std::cin >> equipmentOption;
 				if (equipmentOption == 1) Equip(option - 1);
-				else if (equipmentOption == 2) Enhance(option);
+				else if (equipmentOption == 2) Enhance(option - 1);
 				else Sell(option);
 			}
 			else {
-				useItem(option);
+				useItem(option - 1);
 			}
 		}
 	}
@@ -252,7 +261,7 @@ void Player::Sell(int item) {
 	std::cin >> confirmSell;
 	if (confirmSell == 1) {
 		// Unequip the item part missing
-		setMoney(getMoney() + Bag[item]->getMoney() / 2);
+		setMoney(getMoney() + Bag[item]->getMoney() / 10); //=]]
 		delete Bag[item];
 		Bag.erase(Bag.begin() + item);
 	}
@@ -268,7 +277,9 @@ void Player::Equip(int index) {
 		}
 
 		Box[0] = Bag[index];
+		isEquip[0] = true;
 		Bag[index] = nullptr;
+		delete Bag[index];
 	}
 	else if (Bag[index]->getType() == "Armor") {
 		if (isEquip[1] == true) {
@@ -276,7 +287,9 @@ void Player::Equip(int index) {
 		}
 		
 		Box[1] = Bag[index];
+		isEquip[1] = true;
 		Bag[index] = nullptr;
+		delete Bag[index];
 	}
 	else if (Bag[index]->getType() == "Helmet") {
 		if (isEquip[2] == true) {
@@ -284,7 +297,9 @@ void Player::Equip(int index) {
 		}
 		
 		Box[2] = Bag[index];
+		isEquip[2] = true;
 		Bag[index] = nullptr;
+		delete Bag[index];
 	}
 	else {
 		if (isEquip[3] == true) {
@@ -292,7 +307,9 @@ void Player::Equip(int index) {
 		}
 		
 		Box[3] = Bag[index];
+		isEquip[3] = true;
 		Bag[index] = nullptr;
+		delete Bag[index];
 	}
 
 	//delete the item out of the bag
@@ -333,7 +350,9 @@ void Player::useItem(int index) {
 		}
 		else {
 			Box[5] = Bag[index];
+			isEquip[5] = true;
 			Bag[index] = nullptr;
+			delete Bag[index];
 		}
 	}
 }
@@ -357,6 +376,7 @@ Player::~Player() {
 	}
 
 	for (int i = 0; i < 6; i++) {
+		if(Box[i] != nullptr)
 		delete Box[i];
 	}
 }

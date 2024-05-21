@@ -1,14 +1,4 @@
-﻿  Character.cpp
-  Consumable.cpp
-  Equipment.cpp
-  GameSystem.cpp
-C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\GameSystem.cpp(382,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  Item.cpp
-  main.cpp
-  Shop.cpp
-  Player.cpp
+﻿  Player.cpp
 C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\Player.cpp(133,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\Player.cpp(227,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Monster.cpp
-  Generating Code...
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\Player.cpp(236,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   RPG_Text_Based.vcxproj -> C:\Users\tiend\source\repos\RPG_Text_Based\x64\Debug\RPG_Text_Based.exe

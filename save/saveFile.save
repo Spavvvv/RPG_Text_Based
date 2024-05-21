@@ -1,5 +1,7 @@
 dat
-200 200 50 40 6 50 1 0 0 0 0
-999
-0 0 0 0 0 0 
+200 200 55 45 6 50 1 0 0 0 0
+949
+1 0 1 0 0 0
 2
+Old_Sword Weapon 1 50 0 5 0 0 +5_Attack 101 100 
+Old_Helmet Helmet 1 50 0 0 5 0 +5_Defend. But old 121 100 
