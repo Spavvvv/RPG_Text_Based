@@ -10,6 +10,12 @@ int UPPER_DUNGEON_LEVEL = 5;
 int LOWER_DUNGEON_LEVEL = 1;
 
 
+GameSystem::GameSystem() {
+	player = new Player(0, 0, 0, 0);
+	shop = new Shop();
+	Dungeon_level = 1;
+}
+
 void GameSystem::mainMenu() {
 	std::cout << "1. New Game" << '\n';
 	std::cout << "2. Load Game" << '\n';

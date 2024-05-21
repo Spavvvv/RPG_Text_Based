@@ -14,15 +14,17 @@
 
 class GameSystem {
 private:
-	Player* player = new Player(0,0,0,0);
+	Player* player;
 	
 	std::vector<Monster*> monster;
 
 	int Dungeon_level;
 
-	Shop* shop = new Shop();
+	Shop* shop;
 
 public:
+	GameSystem();
+
 	void mainMenu();
 
 	void newGame();
