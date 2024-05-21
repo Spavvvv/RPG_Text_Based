@@ -1,1 +1,2 @@
 D:\PJ\C++\256\1\Team Prj\RPG_Text_Based\x64\Debug\RPG_Text_Based.exe
+C:\Users\tiend\source\repos\RPG_Text_Based\RPG_Text_Based\x64\Debug\RPG_Text_Based.exe

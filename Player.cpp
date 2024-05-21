@@ -177,11 +177,11 @@ void Player::openBag() {
 		std::cin >> option;
 
 		if (option > 0 && option <= Bag.size()) {
-			if ((Bag[option]->getType() == "Weapon") || (Bag[option]->getType() == "Ring") || (Bag[option]->getType() == "Armor") || (Bag[option]->getType() == "Helmet")) {
+			if ((Bag[option - 1]->getType() == "Weapon") || (Bag[option - 1]->getType() == "Ring") || (Bag[option - 1]->getType() == "Armor") || (Bag[option - 1]->getType() == "Helmet")) {
 				int equipmentOption;
 				std::cout << "1. Equip" << std::endl << "2. Enhance" << std::endl << "3. Sell";
 				std::cin >> equipmentOption;
-				if (equipmentOption == 1) Equip(option);
+				if (equipmentOption == 1) Equip(option - 1);
 				else if (equipmentOption == 2) Enhance(option);
 				else Sell(option);
 			}
