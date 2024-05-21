@@ -172,6 +172,8 @@ bool GameSystem::saveGame() {
 				fileSave << '\n';
 			}
 		}
+
+		fileSave << '\n';
 		//---------------------SAVE THE BAG @@--------------------------------
 
 		if (player->getBagSize() != 0) {
@@ -328,7 +330,7 @@ void GameSystem::loadGame() {
 			}
 		}
 		//-----------------------------LOAD THE BAG -----------------------------
-		//getline(loadFile, line);
+		getline(loadFile, line);
 		while (getline(loadFile, line)) {
 			std::stringstream ss(line);
 			std::string name, type;

@@ -173,11 +173,17 @@ void Player::display() {
 	std::cout << "Money: " << money << '\n';
 	std::cout << "Experience: " << experience << '\n';
 	std::cout << "Critical: " << critical_percent << "%" << '\n';
-
+	std::cout << "--------YOUR EQUIPMENT BOX-------- \n";
 	for (int i = 0; i < 4; i++) {
 		//std::cout << isEquip[i] << '\n';
 		if (isEquip[i] == true) {
 			std::cout << i+1 << "." << Box[i]->getName() << '\n';
+		}
+	}
+	std::cout << "--------YOUR BAG-------- \n";
+	if (Bag.empty() == false) {
+		for (int i = 0; i < Bag.size(); i++) {
+			std::cout << i + 1 << "." << Box[i]->getName() << '\n';
 		}
 	}
 }
@@ -339,7 +345,7 @@ void Player::unEquip(std::string type) {
 	for (int i = 0; i < 4; i++) {
 		if (Box[i]->getType() == type) {
 			Bag.push_back(Box[i]);
-
+			isEquip[i] = false;
 			//delete the item out of the equipment box
 			delete Box[i];
 			break;
