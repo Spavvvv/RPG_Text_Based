@@ -9,12 +9,13 @@
 #include "Consumable.h"
 
 //Init
+
 Player::Player() : Character (){
 	isChoosenOne = false;
 	isAdmin = false;
 	isJew = false;
 	isVip = false;
-	money = 999;
+	money = 0;
 
 	for (int c = 0; c < 6; c++) {
 		isEquip[c] = false;
@@ -183,7 +184,7 @@ void Player::display() {
 	std::cout << "--------YOUR BAG-------- \n";
 	if (Bag.empty() == false) {
 		for (int i = 0; i < Bag.size(); i++) {
-			std::cout << i + 1 << "." << Box[i]->getName() << '\n';
+			std::cout << i + 1 << "." << Bag[i]->getName() << '\n';
 		}
 	}
 }
@@ -391,6 +392,7 @@ void Player::useItem(int index) {
 			isEquip[5] = true;
 			Bag[index] = nullptr;
 			delete Bag[index];
+			Bag.erase(Bag.begin() + index);
 		}
 	}
 }
@@ -400,6 +402,8 @@ void Player::expire() {
 		Consumable* consumable = dynamic_cast<Consumable*>(Box[5]);
 		if (consumable->getDuration() == 0) {
 			Box[5] = nullptr;
+			isEquip[5] = false;
+			delete Box[5];
 		}
 		consumable->setDuration(consumable->getDuration() - 1);
 	}

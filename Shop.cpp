@@ -12,12 +12,12 @@ Shop::Shop() { // Generates all items
     Equipment* equipment_03 = new Equipment("Old_Ring", "Ring", 1, 50, 0, 0, 0, 4, "4_percent_is_gonna_be huge,_right?", 131, 100);
     Equipment* equipment_04 = new Equipment("Old_Armor", "Armor", 1, 50, 20, 0, 0, 0, "+20_Health", 131, 100);
     Consumable* consumable_01 = new Consumable("Health_Potion", "Healing", 1, 3, 50, 0, 0, 0, "Heal", 140, 1);
-    Consumable* consumable_02 = new Consumable("Large Health Potion", "Healing", 1, 6, 100, 0, 0, 0, "Heal_a_large_amount_of_Health", 170, 1);
-    Consumable* consumable_03 = new Consumable("Attack Potion", "Boosting", 1, 15, 0, 5, 0, 0, "+5_Attack_for_your_next_fight", 200, 1);
-    Consumable* consumable_04 = new Consumable("Defend Potion", "Boosting", 1, 15, 0, 0, 5, 0, "+5_Defend_for_your_next_fight", 210, 1);
-    Consumable* consumable_05 = new Consumable("Crit Potion", "Boosting", 1, 15, 0, 0, 0, 4, "+4 Critical_Chance_for_your_next_fight", 220, 1);
-    Consumable* consumable_06 = new Consumable("Health Potion", "Boosting", 1, 15, 25, 0, 0, 0, "+25_Max_Health_for_your_next_fight", 230, 1);
-    Consumable* consumable_07 = new Consumable("Enhance Stone", "Enhance", 1, 15, 0, 0, 0, 0, "Boost_the_chance_of_enhancement", 240, 1);
+    Consumable* consumable_02 = new Consumable("Large_Health_Potion", "Healing", 1, 6, 100, 0, 0, 0, "Heal_a_large_amount_of_Health", 170, 1);
+    Consumable* consumable_03 = new Consumable("Attack_Potion", "Boosting", 1, 15, 0, 5, 0, 0, "+5_Attack_for_your_next_fight", 200, 1);
+    Consumable* consumable_04 = new Consumable("Defend_Potion", "Boosting", 1, 15, 0, 0, 5, 0, "+5_Defend_for_your_next_fight", 210, 1);
+    Consumable* consumable_05 = new Consumable("Crit_Potion", "Boosting", 1, 15, 0, 0, 0, 4, "+4 Critical_Chance_for_your_next_fight", 220, 1);
+    Consumable* consumable_06 = new Consumable("Health_Potion", "Boosting", 1, 15, 25, 0, 0, 0, "+25_Max_Health_for_your_next_fight", 230, 1);
+    Consumable* consumable_07 = new Consumable("Enhance_Stone", "Enhance", 1, 15, 0, 0, 0, 0, "Boost_the_chance_of_enhancement", 240, 1);
 
 
     EquipmentsInStock.push_back(equipment_01);
@@ -66,7 +66,7 @@ void Shop::buy(Player* player) {
     std::cout << "How many of it do you want to buy?" << std::endl;
     std::cin >> amount;
     if (item < 5) {
-        if (player->getMoney() - EquipmentsInStock[item - 1]->getMoney() < 0) {
+        if (player->getMoney() - (EquipmentsInStock[item - 1]->getMoney()) * amount < 0) {
             std::cout << "Insufficient funds" << std::endl;
         }
         else {
