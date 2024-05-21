@@ -69,13 +69,25 @@ void Shop::buy(Player* player) {
     std::cout << "How many of it do you want to buy?" << std::endl;
     std::cin >> amount;
     if (item < 5) {
-        for (int j = 0; j < amount; j++) {
-            player->setBag(EquipmentsInStock[item - 1]);
+        if (player->getMoney() - EquipmentsInStock[item - 1]->getMoney() < 0) {
+            std::cout << "Insufficient funds" << std::endl;
+        }
+        else {
+            for (int j = 0; j < amount; j++) {
+                player->setBag(EquipmentsInStock[item - 1]);
+                player->setMoney(player->getMoney() - EquipmentsInStock[item - 1]->getMoney());
+            }
         }
     }
     else if (item >= 5) {
-        for (int j = 0; j < amount; j++) {
-            player->setBag(ConsumablesInStock[item - 5]);
+        if (player->getMoney() - ConsumablesInStock[item - 5]->getMoney() < 0) {
+            std::cout << "Insufficient funds" << std::endl;
+        }
+        else {
+            for (int j = 0; j < amount; j++) {
+                player->setBag(ConsumablesInStock[item - 5]);
+                player->setMoney(player->getMoney() - ConsumablesInStock[item - 5]->getMoney());
+            }
         }
     }
     shopping(player);
