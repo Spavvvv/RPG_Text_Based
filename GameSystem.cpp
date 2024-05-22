@@ -497,10 +497,10 @@ void GameSystem::genMonster() {
 		}
 	}
 
-	//std::cout << monster.size() << '\n';
-	for(int i = 0; i < monster.size(); i++) {
-		std::cout << monster[i]->getName() << '\n';
-	}
+	////std::cout << monster.size() << '\n';
+	//for(int i = 0; i < monster.size(); i++) {
+	//	std::cout << monster[i]->getName() << '\n';
+	//}
 }
 
 //the process include using items before figting and some other options like running or.. hmm
